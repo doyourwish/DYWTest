@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">hellotest</string>
+    <string name="hello">ハムタロサァン</string>
+    <string name="world">松下</string>
+    <string name="button">ここを押してね</string>
+</resources>
