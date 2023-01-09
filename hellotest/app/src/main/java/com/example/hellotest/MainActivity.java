@@ -1,14 +1,15 @@
 package com.example.hellotest;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+//import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+//import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,18 +17,15 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
+/*    private TextView textView;
+    private boolean buttonTap = false;
+    private MyClass myclass;*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //アクションバーを隠す（上部にアプリ名が表示されてる部分）
-        //全画面に適応させるなら、themes.xmlを編集する
-        //see https://www.straightapps.com/android/dev/as202102-remove-actionbar.html
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
-            actionBar.hide();
-        }
 
         // 画面部品ListViewを取得。
         ListView lvMenu = findViewById(R.id.lvMenu);
@@ -37,13 +35,11 @@ public class MainActivity extends AppCompatActivity {
         Map<String, String> menu = new HashMap<>();
         menu.put("name", "から揚げ定食");
         menu.put("price", "800円");
-        System.out.println(menu.get("name")+menu.get("price"));
         menuList.add(menu);
         //「ハンバーグ定食」のデータを格納する Map オブジェクトの用意と menuList へのデータ登録。
         menu = new HashMap<>();
         menu.put("name", "ハンバーグ定食");
         menu.put("price", "850円");
-        System.out.println(menu.get("name")+menu.get("price"));
         menuList.add(menu);
 
         // SimpleAdapter第4引数from用データの用意。
@@ -58,13 +54,37 @@ public class MainActivity extends AppCompatActivity {
         // リストタップのリスナクラス登録。
         //ListView lvMenu = findViewById(R.id.lvMenu);
         lvMenu.setOnItemClickListener(new ListItemClickListener());
+
+        /*        myclass = new MyClass();
+        String text_matushita = myclass.InputText();
+
+        // ボタンを設定
+        Button button = findViewById(R.id.button);
+
+        // TextView の設定
+        textView = findViewById(R.id.text_view);
+
+       // lambda式で簡略化
+        button.setOnClickListener( v -> {
+            // flagがtrueの時
+            if (buttonTap) {
+                textView.setText(R.string.hello);
+                buttonTap = false;
+            }
+            // flagがfalseの時
+            else {
+                //textView.setText(R.string.world);
+                textView.setText(text_matushita);
+                buttonTap = true;
+            }
+        });*/
     }
 
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // タップされた行のデータを取得。SimpleAdapterでは1行分のデータはMap型!
-            Map<String, String> item = (Map<String, String>)parent.getItemAtPosition(position);
+            Map<String, String> item = (Map<String, String>) parent.getItemAtPosition(position);
             // 定食名と金額を取得。
             String menuName = item.get("name");
             String menuPrice = item.get("price");
