@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hellotest">
 
+    <!--
+        android:theme="@style/Theme.Hellotest"
+        タイトルバー消したいけど、下のやつだとできない
+        android:theme="@android:style/Theme.NoTitleBar"
+    -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

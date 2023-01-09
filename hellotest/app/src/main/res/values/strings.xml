@@ -1,10 +1,16 @@
+<!--
+* string.xmlの役割
+言語別にstring.xmlを用意することで、
+Android OSの言語設定に従って自動的に切り替えてくれる（日本語、英語など）
+参照：2.5.2 string.xmlの働き
+-->
 <resources>
-    <string name="app_name">hellotest</string>
+    <string name="app_name_hello">hellotest</string>
     <string name="hello">ハムタロサァン</string>
     <string name="world">松下</string>
     <string name="button">ここを押してね</string>
 
-    <string name="app_name2">リスト選択サンプル</string>
+    <string name="app_name">リスト選択サンプル</string>
     <string-array name="lv_menu">
         <item> から揚げ定食 </item>
         <item> ハンバーグ定食 </item>
