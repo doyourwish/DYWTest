@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">NavigationApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="advertisement">広告表示エリア(仮)</string>
+    <string name="schedule">予定表示エリア(仮)</string>
+    <string name="title">HOME</string>
+
+<!-- 設定画面   -->
+    <string name="setting">設定</string>
+    <string name="account">アカウント</string>
+    <string name="user_info">ユーザー情報</string>
+    <string name="security">セキュリティ</string>
+    <string name="connection">外部サイト連携</string>
+    <string name="support">サポート</string>
+    <string name="info">本アプリについて</string>
+
+    <string name="log">ログイン or ログアウト表示エリア</string>
+    <string name="ver">Ver表示</string>
+
+</resources>
