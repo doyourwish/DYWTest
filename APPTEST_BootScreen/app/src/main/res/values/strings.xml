@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">APPTEST_BootScreen</string>
+    <string name="tv_app_name">明日何着る？</string>
+    <string name="tv_screen_name_explanation">アプリの説明</string>
+    <string name="text_explanation">アプリをインストールしていただきありがとうございます．
+        \nこのアプリは，事前にあなたの持っている服装とあなたの好みを登録することで，服装を自動で提案します．</string>
+</resources>
