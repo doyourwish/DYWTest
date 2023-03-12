@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".HomeFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="@string/title"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="350dp"
+        android:layout_marginTop="5dp"
+        android:background="#F5F5F5"
+        android:padding="0dp"
+        android:src="@drawable/ic_baseline_settings_24"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:id="@+id/schedule"
+        android:layout_width="fill_parent"
+        android:layout_height="500dp"
+        android:background="#FFFF00"
+        android:text="@string/schedule"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/advertisement"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:text="@string/advertisement"
+        android:background="#FFFF00"
+        android:layout_marginTop="550dp"/>
+
+</FrameLayout>
