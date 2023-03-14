@@ -1,7 +1,43 @@
 <resources>
     <string name="app_name">APPTEST_BootScreen</string>
     <string name="tv_app_name">明日何着る？</string>
-    <string name="tv_screen_name_explanation">アプリの説明</string>
+    <string name="tv_screen_name_explanation">アプリ説明画面</string>
     <string name="text_explanation">アプリをインストールしていただきありがとうございます．
         \nこのアプリは，事前にあなたの持っている服装とあなたの好みを登録することで，服装を自動で提案します．</string>
+    <string name="bt_explanation">次へ</string>
+    <string name="tv_screen_name_register_mail">メールアドレス・パスワード登録画面</string>
+    <string name="tv_mail">メールアドレスを入力してください．</string>
+    <string name="tv_passward">パスワードを入力してください．</string>
+    <string name="bt_back">戻る</string>
+    <string name="bt_register">登録</string>
+    <string name="tv_skip_0">登録を</string>
+    <string name="tv_skip">スキップ</string>
+    <string name="tv_Q_and_A_0">引き継ぎの方は，</string>
+    <string name="tv_Q_and_A">こちら</string>
+    <string name="tv_screen_name_gender_age">性別・生年月日登録画面</string>
+    <string name="tv_gender">あなたの性別を入力してください．</string>
+    <string name="rb_male">男性</string>
+    <string name="rb_female">女性</string>
+    <string name="tv_age">あなたの生年月日を選択してください．</string>
+    <string-array name="year">
+        <item>-</item>
+        <item>2023</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+        <item>2019</item>
+    </string-array>
+    <string name="tv_year">年</string>
+    <string-array name="month">
+        <item>-</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="tv_month">月</string>
+    <string-array name="day">
+        <item>-</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="tv_day">日</string>
 </resources>
