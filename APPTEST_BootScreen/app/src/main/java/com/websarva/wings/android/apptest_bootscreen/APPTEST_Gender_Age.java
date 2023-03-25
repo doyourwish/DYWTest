@@ -7,24 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class APPTEST_Explanation extends AppCompatActivity {
+public class APPTEST_Gender_Age extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apptest_explanation);
+        setContentView(R.layout.activity_apptest_gender_age);
 
-        Button button = findViewById(R.id.bt_explanation);
+        Button button = findViewById(R.id.bt_back);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(APPTEST_Explanation.this, APPTEST_Register_Maill.class);
+                Intent intent = new Intent(APPTEST_Gender_Age.this, APPTEST_Register_Maill.class);
                 startActivity(intent);
                 // 前の画面を終了する
                 finish();
             }
         });
-
 
     }
 }
