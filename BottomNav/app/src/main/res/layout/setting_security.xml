@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#F5F5F5"
+        android:text="@string/setting_security"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/about_you"/>
+
+    <ImageButton
+        android:id="@+id/button"
+        android:background="#F5F5F5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/baseline_clear_24"
+        android:padding="0dp"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:id="@+id/about_you"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/setting_register_location"
+        android:drawableEnd="@drawable/baseline_navigate_next_24"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/account_status"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="100dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text="@string/setting_location_status"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toStartOf="@+id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
