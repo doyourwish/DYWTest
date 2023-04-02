@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".SettingFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#F5F5F5"
+        android:text="@string/setting"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/account"/>
+
+    <ImageButton
+        android:background="#F5F5F5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/baseline_clear_24"
+        android:padding="0dp"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:id="@+id/setting"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:text="@string/setting"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/account"/>
+
+
+    <TextView
+        android:id="@+id/account"
+        android:background="#FFFFFF"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:drawableStart="@drawable/baseline_account_circle_24"
+        android:drawableEnd="@drawable/baseline_navigate_next_24"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/account"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <TextView
+        android:id="@+id/user_info"
+        android:background="#FFFFFF"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableStart="@drawable/emoji_people_48px"
+        android:drawableEnd="@drawable/baseline_navigate_next_24"
+        android:text="@string/user_info"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account"/>
+
+    <TextView
+        android:id="@+id/security"
+        android:background="#FFFFFF"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableStart="@drawable/baseline_security_24"
+        android:drawableEnd="@drawable/baseline_navigate_next_24"
+        android:text="@string/security"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_info"/>
+
+    <TextView
+        android:id="@+id/connection"
+        android:background="#FFFFFF"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableStart="@drawable/web_48px"
+        android:drawableEnd="@drawable/baseline_navigate_next_24"
+        android:text="@string/connection"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/security"/>
+
+    <TextView
+        android:id="@+id/support"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/support"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connection"/>
+
+    <TextView
+        android:id="@+id/info"
+        android:background="#FFFFFF"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/info"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/info_48px"
+        android:drawableEnd="@drawable/baseline_navigate_next_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/support"/>
+
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:background="#FFFF00"
+        android:text="@string/log"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info"/>
+
+    <TextView
+        android:id="@+id/ver"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFFF00"
+        android:gravity="center_vertical"
+        android:text="@string/ver"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

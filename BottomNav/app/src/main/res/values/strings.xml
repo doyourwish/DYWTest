@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">BottomNav</string>
+    <!--    ホーム画面-->
+    <string name="advertisement">広告表示エリア(仮)</string>
+    <string name="schedule">予定表示エリア(仮)</string>
+    <string name="title">ホーム</string>
+
+    <!-- 設定画面   -->
+    <string name="setting">設定</string>
+    <string name="account">アカウント</string>
+    <string name="user_info">ユーザー情報</string>
+    <string name="security">セキュリティ</string>
+    <string name="connection">外部サイト連携</string>
+    <string name="support">サポート</string>
+    <string name="info">本アプリについて</string>
+
+    <string name="log">ログイン or ログアウト表示エリア</string>
+    <string name="ver">Ver表示</string>
+
+    <!-- 設定_アカウント画面   -->
+    <string name="setting_account">アカウント</string>
+    <string name="setting_account_register">アカウント登録</string>
+    <string name="setting_account_status">登録済み or 未登録</string>
+    <string name="setting_mail_address_reset">メールアドレス再設定</string>
+    <string name="setting_mail_address">メールアドレス取得</string>
+    <string name="setting_password_reset">パスワード再設定</string>
+    <string name="setting_delete">明日何着るから退会</string>
+
+    <!-- 設定_ユーザー情報画面   -->
+    <string name="setting_user_info">ユーザー情報</string>
+    <string name="setting_about_user">性別: 男性 or 女性¥n年代: xx年代</string>
+    <string name="setting_register_sex_generation">性別・年代登録</string>
+    <string name="setting_register_style">体型登録</string>
+    <string name="setting_register_preference">好み登録</string>
+
+    <!-- 設定_セキュリティ   -->
+    <string name="setting_security">セキュリティ</string>
+    <string name="setting_register_location">位置情報登録</string>
+    <string name="setting_location_status">設定済み or 未設定</string>
+
+    <!-- 設定_外部サイト連携   -->
+    <string name="setting_external_site">外部サイト連携</string>
+    <string name="setting_ZOZO">ZOZO</string>
+    <string name="setting_ZOZO_status">連携済 or 未連携</string>
+    <string name="setting_UNIQLO">UNIQLO</string>
+    <string name="setting_UNIQLO_status">連携済 or 未連携</string>
+
+    <!-- 設定_明日何着るについて   -->
+    <string name="setting_about_app">明日何着るについて</string>
+    <string name="setting_this_app">「明日何着る」とは</string>
+    <string name="setting_terms_of_service">利用規約</string>
+    <string name="setting_update">アップデート確認</string>
+
+    <!-- ログイン画面   -->
+    <string name="login_app_title">明日何着る?</string>
+    <string name="login_mail">メールアドレス</string>
+    <string name="login_password">パスワード (半角英数字・記号・8~20文字)</string>
+    <string name="login_checkbox">今後, この画面を表示しない (後で設定することもできます)</string>
+    <string name="login_button">ログイン</string>
+    <string name="login_skip">ログインせずにスキップ</string>
+    <string name="login_forget">ログイン情報を忘れてしまった方は, こちら</string>
+    <string name="login_register">アカウントをお持ちでない場合, 登録はこちら</string>
+
+    <!-- クローゼット画面   -->
+    <string name="closet_title">クローゼット</string>
+    <string name="closet_tab1">表示</string>
+    <string name="closet_tab2">登録</string>
+    <string name="closet_tab3">削除</string>
+    <string name="closet_search">検索</string>
+    <string name="closet_clothes">登録した服表示</string>
+
+    <!-- クローゼット画面登録   -->
+    <string name="closet_redo">やり直す</string>
+    <string name="closet_register">登録</string>
+
+    <!-- カレンダー画面登録   -->
+    <string name="calender_title">カレンダー</string>
+    <string name="weather">天気表示エリア</string>
+    <string name="calender_ad">広告表示エリア</string>
+    <string name="calender_merit">連携推奨表示エリア</string>
+    <string name="calender_connection">連携する or 連携解除</string>
+</resources>
