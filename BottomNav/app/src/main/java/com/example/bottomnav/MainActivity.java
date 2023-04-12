@@ -2,10 +2,10 @@ package com.example.bottomnav;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -22,8 +22,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bottomNavigationView =findViewById(R.id.nav);
+
+        if (savedInstanceState == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            // BackStackを設定
+            fragmentTransaction.addToBackStack(null);
+
+            // counterをパラメータとして設定
+            int count = 0;
+            fragmentTransaction.replace(R.id.container,HomeFragment.newInstance(count));
+
+            fragmentTransaction.commit();
+        }
+
+
+        HomeFragment Homefragment = new HomeFragment();
+        FragmentTransaction swtransaction = getSupportFragmentManager().beginTransaction();
+        swtransaction.add(R.id.container, homeFragment);
+        swtransaction.commit();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
 
@@ -46,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return false;
             }
+
         });
 
         // Set the default fragment

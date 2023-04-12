@@ -10,27 +10,27 @@
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="@string/title"
         android:textColor="#000000"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"/>
 
-    <ImageButton
+    <Button
         android:id="@+id/setting_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="350dp"
-        android:layout_marginTop="5dp"
-        android:background="#F5F5F5"
-        android:padding="0dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_baseline_settings_24"
+        android:backgroundTint="#F5F5F5"
         android:onClick="onButtonClick"
-        android:src="@drawable/ic_baseline_settings_24"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:padding="0dp"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/schedule"
@@ -38,7 +38,6 @@
         android:layout_height="550dp"
         android:background="#FFFF00"
         android:text="@string/schedule"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/title"/>
 
     <TextView
