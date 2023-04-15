@@ -17,7 +17,27 @@ import android.widget.TextView;
 public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+        // ボタンにクリックイベントを設定する
+        Button button = view.findViewById(R.id.return_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 遷移先のFragmentを作成する
+                Fragment secondFragment = new HomeFragment();
+
+                // FragmentManagerを使って遷移する
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, secondFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        return view;
+
+
     }
 }
 
