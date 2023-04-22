@@ -73,6 +73,10 @@
     <string name="closet_redo">やり直す</string>
     <string name="closet_register">登録</string>
 
+    <!-- クローゼット画面削除   -->
+    <string name="closet_unselect">選択解除</string>
+    <string name="closet_delete">削除</string>
+
     <!-- カレンダー画面登録   -->
     <string name="calender_title">カレンダー</string>
     <string name="weather">天気表示エリア</string>
