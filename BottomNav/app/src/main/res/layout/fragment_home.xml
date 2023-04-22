@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
     tools:context=".HomeFragment">
 
     <TextView
@@ -16,37 +15,44 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/setting_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="300dp"
-        android:background="@drawable/ic_baseline_settings_24"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintHorizontal_bias="0.48"
+        android:background="@drawable/baseline_settings_24"
         android:onClick="onButtonClick"
         android:padding="0dp"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:layout_marginTop="5dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/schedule"
         android:layout_width="fill_parent"
         android:layout_height="550dp"
-        android:background="#FFFF00"
+        android:background="@drawable/shape_style2"
         android:text="@string/schedule"
-        android:layout_below="@+id/title"/>
+        android:layout_below="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
 
     <TextView
         android:id="@+id/advertisement"
         android:layout_width="fill_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
         android:text="@string/advertisement"
-        android:background="#FFFF00"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/schedule"/>
-</RelativeLayout>
+        android:background="@drawable/shape_style2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedule"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
