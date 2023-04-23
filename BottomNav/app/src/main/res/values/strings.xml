@@ -13,7 +13,6 @@
     <string name="connection">外部サイト連携</string>
     <string name="support">サポート</string>
     <string name="info">本アプリについて</string>
-
     <string name="log">ログイン or ログアウト表示エリア</string>
     <string name="ver">Ver表示</string>
 
@@ -53,13 +52,16 @@
 
     <!-- ログイン画面   -->
     <string name="login_app_title">明日何着る?</string>
-    <string name="login_mail">メールアドレス</string>
-    <string name="login_password">パスワード (半角英数字・記号・8~20文字)</string>
-    <string name="login_checkbox">今後, この画面を表示しない (後で設定することもできます)</string>
+    <string name="login_mail">　メールアドレス</string>
+    <string name="login_password">　パスワード (半角英数字・記号・8~20文字)</string>
+    <string name="login_checkbox">今後、この画面を表示しない (後で設定することもできます)</string>
     <string name="login_button">ログイン</string>
-    <string name="login_skip">ログインせずにスキップ</string>
-    <string name="login_forget">ログイン情報を忘れてしまった方は, こちら</string>
-    <string name="login_register">アカウントをお持ちでない場合, 登録はこちら</string>
+    <string name="login_skip">ログインせずに</string>
+    <string name="skip_button">スキップ</string>
+    <string name="login_forget">ログイン情報を忘れてしまった方は、</string>
+    <string name="login_forget_button">こちら</string>
+    <string name="login_register">アカウントをお持ちでない場合、</string>
+    <string name="login_register_button">登録はこちら</string>
 
     <!-- クローゼット画面   -->
     <string name="closet_title">クローゼット</string>
