@@ -74,6 +74,12 @@
     <!-- クローゼット画面登録   -->
     <string name="closet_redo">やり直す</string>
     <string name="closet_register">登録</string>
+    <string name="closet_logo">明日何着る？</string>
+    <string name="closet_note">以下から選択し、服装を登録してください</string>
+    <string name="closet_album">アルバムから追加</string>
+    <string name="closet_camera">カメラから追加</string>
+
+
 
     <!-- クローゼット画面削除   -->
     <string name="closet_unselect">選択解除</string>
@@ -85,6 +91,8 @@
     <string name="calender_ad">広告表示エリア</string>
     <string name="calender_merit">連携推奨表示エリア</string>
     <string name="calender_connection">連携する or 連携解除</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
