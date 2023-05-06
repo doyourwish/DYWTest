@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    tools:context=".SettingFragment">
+    android:background="#F5F5F5">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="35dp"
         android:background="#F5F5F5"
-        android:text="@string/setting"
+        android:text="@string/setting_account"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"/>
 
     <ImageButton
         android:id="@+id/return_button"
@@ -37,37 +37,67 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/setting"
+        android:id="@+id/account_status"
         android:layout_width="fill_parent"
-        android:layout_height="20dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
         android:paddingLeft="20dp"
-        android:text="@string/setting"
+        android:paddingRight="20dp"
         android:gravity="center_vertical"
+        android:text="@string/setting_account_status"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:background="@drawable/shape_style"/>
+
+    <ImageButton
+        android:id="@+id/account_status_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/baseline_navigate_next_24"
+        android:onClick="onButtonClick"
+        android:padding="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/account_status"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+    <TextView
+        android:id="@+id/mail"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/setting_mail_address_reset"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_status"
+        android:background="@drawable/shape_style"/>
+
+    <TextView
+        android:id="@+id/mail_address"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="40dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text="@string/setting_mail_address"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"/>
-
-
-    <TextView
-        android:id="@+id/account"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:drawableStart="@drawable/baseline_account_circle_24"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:gravity="center_vertical"
-        android:text="@string/account"
-        android:textSize="18sp"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting"
-        android:background="@drawable/shape_style"/>
-
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
-        android:id="@+id/setting_button"
+        android:id="@+id/mail_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="50dp"
@@ -78,28 +108,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/account"
+        app:layout_constraintTop_toTopOf="@+id/mail"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/user_info"
+        android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:drawableStart="@drawable/emoji_people_48px"
-        android:text="@string/user_info"
+        android:text="@string/setting_password_reset"
         android:textSize="18sp"
         android:textColor="#000000"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account"
+        app:layout_constraintTop_toBottomOf="@+id/mail"
         android:background="@drawable/shape_style"/>
 
-
     <ImageButton
-        android:id="@+id/user_button"
+        android:id="@+id/password_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="50dp"
@@ -110,143 +138,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_info"
+        app:layout_constraintTop_toTopOf="@+id/password"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/security"
+        android:id="@+id/delete"
+        android:background="#FFFFFF"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:drawableStart="@drawable/baseline_security_24"
-        android:text="@string/security"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_info"
-        android:background="@drawable/shape_style"/>
-
-
-    <ImageButton
-        android:id="@+id/security_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/baseline_navigate_next_24"
-        android:onClick="onButtonClick"
-        android:padding="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/security"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/connection"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:drawableStart="@drawable/web_48px"
-        android:text="@string/connection"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/security"
-        android:background="@drawable/shape_style"/>
-
-    <ImageButton
-        android:id="@+id/connection_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/baseline_navigate_next_24"
-        android:onClick="onButtonClick"
-        android:padding="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/connection"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/support"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="@string/support"
-        android:textSize="15sp"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connection"/>
-
-
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="@string/info"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:gravity="center_vertical"
-        android:drawableStart="@drawable/info_48px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/support"
-        android:background="@drawable/shape_style"/>
-
-
-    <ImageButton
-        android:id="@+id/info_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/baseline_navigate_next_24"
-        android:onClick="onButtonClick"
-        android:padding="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/info"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/log"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="20dp"
         android:layout_marginTop="50dp"
-        android:background="#FFFF00"
-        android:text="@string/log"
+        android:text="@string/setting_delete"
         android:textSize="18sp"
+        android:textColor="#000000"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info"/>
+        app:layout_constraintTop_toBottomOf="@+id/password"/>
 
-    <TextView
-        android:id="@+id/ver"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:background="#FFFF00"
-        android:gravity="center_vertical"
-        android:text="@string/ver"
-        android:textSize="18sp"
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/baseline_navigate_next_24"
+        android:onClick="onButtonClick"
+        android:padding="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/delete"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,6 @@
 package com.example.bottomnav;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,19 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-public class HomeFragment extends Fragment {
-    public static Fragment newInstance(int count) {
-        return new HomeFragment();
-    }
-
-    // Fragmentのレイアウトを設定するためのメソッド
+public class Setting_security_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_setting_security, container, false);
         // ボタンにクリックイベントを設定する
-        ImageButton button = view.findViewById(R.id.setting_button);
+        ImageButton button = view.findViewById(R.id.return_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,14 +30,7 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-
         return view;
 
-
     }
-
-
 }
-
-
-
