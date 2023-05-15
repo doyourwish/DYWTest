@@ -1,5 +1,7 @@
 package com.example.sendmail;
 
+import android.os.Environment;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -14,6 +16,8 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Label;
 import com.google.api.services.gmail.model.ListLabelsResponse;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,14 +38,14 @@ public class GmailCredentials {
     /**
      * Directory to store authorization tokens for this application.
      */
-    private static final String TOKENS_DIRECTORY_PATH = "tokens";
+    private static final String TOKENS_DIRECTORY_PATH = "/assets/tokens";
 
     /**
      * Global instance of the scopes required by this quickstart.
      * If modifying these scopes, delete your previously saved tokens/ folder.
      */
-    private static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_LABELS);
-    private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+    private static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_SEND);
+    private static final String CREDENTIALS_FILE_PATH = "/raw/credentials.json";
 
     /**
      * Creates an authorized Credential object.
@@ -50,10 +54,15 @@ public class GmailCredentials {
      * @return An authorized Credential object.
      * @throws IOException If the credentials.json file cannot be found.
      */
-    public static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT)
+    public static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT,InputStream in,File tokensDir)
             throws IOException {
         // Load client secrets.
-        InputStream in = GmailCredentials.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        // getResourceAsStream(cannot) :: https://qiita.com/ka2kama/items/9e16cc6d1019838770cc
+        // success :: http://individualmemo.blog104.fc2.com/blog-entry-50.html
+        //InputStream in = GmailCredentials.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        //InputStream in = new FileInputStream(CREDENTIALS_FILE_PATH);
+
+
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -63,7 +72,8 @@ public class GmailCredentials {
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
+                //.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
+                .setDataStoreFactory(new FileDataStoreFactory(tokensDir))
                 .setAccessType("offline")
                 .build();
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
@@ -71,24 +81,15 @@ public class GmailCredentials {
         //returns an authorized Credential object.
         return credential;
     }
-    public static void main(String... args) throws IOException, GeneralSecurityException {
+
+    public static Gmail getGmailService(InputStream in,File tokenDir) throws GeneralSecurityException, IOException {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+        Gmail service = new Gmail.Builder(HTTP_TRANSPORT,
+                JSON_FACTORY,
+                getCredentials(HTTP_TRANSPORT,in,tokenDir))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
-
-        // Print the labels in the user's account.
-        String user = "me";
-        ListLabelsResponse listResponse = service.users().labels().list(user).execute();
-        List<Label> labels = listResponse.getLabels();
-        if (labels.isEmpty()) {
-            System.out.println("No labels found.");
-        } else {
-            System.out.println("Labels:");
-            for (Label label : labels) {
-                System.out.printf("- %s\n", label.getName());
-            }
-        }
+        return service;
     }
 }

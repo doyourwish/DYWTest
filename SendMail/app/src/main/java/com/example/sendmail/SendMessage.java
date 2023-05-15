@@ -11,7 +11,9 @@ import com.google.api.services.gmail.model.Message;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 import javax.mail.MessagingException;
@@ -33,23 +35,12 @@ public class SendMessage {
      * @throws IOException        - if service account credentials file not found.
      */
     public static Message sendEmail(String fromEmailAddress,
-                                    String toEmailAddress)
+                                    String toEmailAddress,
+                                    InputStream in,
+                                    File tokensDir)
             throws MessagingException, IOException, GeneralSecurityException {
-        //final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        /* Load pre-authorized user credentials from the environment.
-           TODO(developer) - See https://developers.google.com/identity for
-            guides on implementing OAuth2 for your application.*/
-        GoogleCredentials credentials = GoogleCredentials.getApplicationDefault()
-                .createScoped(GmailScopes.GMAIL_SEND);
-        HttpRequestInitializer requestInitializer = new HttpCredentialsAdapter(credentials);
-
-        // Create the gmail API client
-        Gmail service = new Gmail.Builder(new NetHttpTransport(),
-                GsonFactory.getDefaultInstance(),
-                requestInitializer)
-                //GmailCredentials.getCredentials(HTTP_TRANSPORT))
-                .setApplicationName("Gmail samples")
-                .build();
+        //get service (try)
+        Gmail service = GmailCredentials.getGmailService(in,tokensDir);
 
         // Create the email content
         String messageSubject = "Test message";
