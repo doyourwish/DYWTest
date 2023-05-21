@@ -92,23 +92,6 @@
         app:layout_constraintEnd_toStartOf="@+id/skip_button"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
-    <Button
-        android:id="@+id/skip_button"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:background="#F5F5F5"
-        app:backgroundTint="@color/grey"
-        android:gravity="center"
-        android:padding="0dp"
-        android:text="@string/skip_button"
-        android:textColor="#0000FF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/login"
-        app:layout_constraintStart_toEndOf="@+id/skip"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <TextView
         android:id="@+id/forget"
         android:layout_width="wrap_content"

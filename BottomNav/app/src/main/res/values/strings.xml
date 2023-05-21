@@ -63,6 +63,7 @@
     <string name="login_register">アカウントをお持ちでない場合、</string>
     <string name="login_register_button">登録はこちら</string>
 
+
     <!-- クローゼット画面   -->
     <string name="closet_title">クローゼット</string>
     <string name="closet_tab1">表示</string>
@@ -80,7 +81,6 @@
     <string name="closet_camera">カメラから追加</string>
 
 
-
     <!-- クローゼット画面削除   -->
     <string name="closet_unselect">選択解除</string>
     <string name="closet_delete">削除</string>
@@ -91,8 +91,13 @@
     <string name="calender_ad">広告表示エリア</string>
     <string name="calender_merit">連携推奨表示エリア</string>
     <string name="calender_connection">連携する or 連携解除</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- ログイン情報忘れた画面   -->
+    <string name="login_forget_title">ログイン情報忘れ(要藤さん作成)</string>
+
+    <!-- ログイン登録画面   -->
+    <string name="login_register_title">アカウント新規登録(要藤さん作成)</string>
+
+    login_forget_title
 
 </resources>
