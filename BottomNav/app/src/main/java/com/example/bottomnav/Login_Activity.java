@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,17 @@ public class Login_Activity extends AppCompatActivity {
         Button3.setOnClickListener(v -> {
             Intent intent = new Intent(getApplication(), MainActivity.class);
             startActivity(intent);
+        });
+
+        final CheckBox checkbox = (CheckBox)findViewById(R.id.checkbox);
+        checkbox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(checkbox.isChecked() == true) {
+                }
+                else {
+                }
+            }
         });
     }
 }

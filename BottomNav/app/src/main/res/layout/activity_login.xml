@@ -89,7 +89,7 @@
         android:textSize="12sp"
         android:text="@string/login_skip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/skip_button"
+        app:layout_constraintEnd_toStartOf="@+id/login"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <TextView
@@ -148,7 +148,7 @@
         android:text="@string/login_register_button"
         android:textColor="#0000FF"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/skip_button"
+        app:layout_constraintEnd_toEndOf="@+id/login"
         app:layout_constraintStart_toEndOf="@+id/register"
         app:layout_constraintTop_toBottomOf="@+id/forget_button"
         tools:ignore="TouchTargetSizeCheck" />
