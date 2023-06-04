@@ -2,10 +2,18 @@ package com.example.sendmail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.GeneralSecurityException;
+
+import javax.mail.MessagingException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,73 +26,31 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                asyncTask a=new asyncTask();
-                //a.execute("kaki37yo","rrlrcvoeciavicke","テストタイトル","送信完了\n本文をここに記述する") ;
-                a.execute("donamon0","Moriryo1996","テストタイトル","送信完了\n本文をここに記述する") ;
+
+                // アプリの専用ディレクトリのパスを取得
+                File appDir = getExternalFilesDir(null);
+                // tokensディレクトリのパスを作成
+                File tokensDir = new File(appDir, "/asset/tokens");
+                if (!tokensDir.exists()) {
+                    tokensDir.mkdirs();
+                }
+                // 認証ファイルの取得
+                Context appContext = getApplicationContext();
+                InputStream in = appContext.getResources().openRawResource(R.raw.credentials);
+
+                // メール送信
+                // gmail apiをandroidに組み込もうとしたが、java標準のライブラリが取り込めずエラーが出る
+                String email_address = "xxxyyy@gmail.com";
+                try {
+                    SendMessage.sendEmail(email_address,email_address,in,tokensDir);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                } catch (GeneralSecurityException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
-    }
-
-    private class asyncTask extends android.os.AsyncTask{
-        protected String account;
-        protected String password;
-        protected String title;
-        protected String text;
-
-        @Override
-        protected Object doInBackground(Object... obj){
-            account=(String)obj[0];
-            password=(String)obj[1];
-            title=(String)obj[2];
-            text=(String)obj[3];
-
-            java.util.Properties properties = new java.util.Properties();
-            //google(cannot)
-//            properties.put("mail.smtp.host", "smtp.gmail.com");
-//            properties.put("mail.smtp.auth", "true");
-//            properties.put("mail.smtp.port", "465");
-//            properties.put("mail.smtp.socketFactory.post", "465");
-//            properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-            //yahoo(cannot)
-            properties.put("mail.smtp.host", "smtp.mail.yahoo.co.jp");
-            properties.put("mail.smtp.port", "587");
-            properties.put("mail.smtp.auth", "true");
-            properties.put("mail.transport.protocol", "smtp");
-            properties.put("mail.smtp.ssl.trust", "*");
-            properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.connectiontimeout", "10000");
-            properties.put("mail.smtp.timeout", "10000");
-
-
-            final javax.mail.Message msg = new javax.mail.internet.MimeMessage(javax.mail.Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-                @Override
-                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                    return new javax.mail.PasswordAuthentication(account,password);
-                }
-            }));
-
-            try {
-                msg.setFrom(new javax.mail.internet.InternetAddress(account + "@yahoo.com"));
-                //自分自身にメールを送信
-                msg.setRecipients(javax.mail.Message.RecipientType.TO, javax.mail.internet.InternetAddress.parse(account + "@yahoo.com"));
-                msg.setSubject(title);
-                msg.setText(text);
-
-                javax.mail.Transport.send(msg);
-
-            } catch (Exception e) {
-                System.out.println("[asyncTask]send error : " + e.toString());
-                return (Object)e.toString();
-            }
-
-            return (Object)"送信が完了しました";
-
-        }
-        @Override
-        protected void onPostExecute(Object obj) {
-            //画面にメッセージを表示する
-            Toast.makeText(MainActivity.this,(String)obj,Toast.LENGTH_LONG).show();
-        }
     }
 }
