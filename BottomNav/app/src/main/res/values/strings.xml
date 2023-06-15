@@ -98,6 +98,7 @@
     <!-- ログイン登録画面   -->
     <string name="login_register_title">アカウント新規登録(要藤さん作成)</string>
 
-    login_forget_title
+    <!-- 広告   -->
+
 
 </resources>
