@@ -26,18 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("debug","onCreate()");
-
-        MobileAds.initialize(this,
-                initializationStatus -> {
-                });
-
-        AdView adView = findViewById(R.id.advertisement);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-
-
         bottomNavigationView =findViewById(R.id.nav);
 
         if (savedInstanceState == null) {
@@ -87,7 +75,5 @@ public class MainActivity extends AppCompatActivity {
         // Set the default fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.container,
                 new HomeFragment()).commit();
-
     }
-
 }

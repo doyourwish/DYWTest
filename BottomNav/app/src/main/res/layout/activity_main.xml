@@ -31,18 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/advertisement"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:text="@string/advertisement"
-        android:background="@drawable/shape_style2"
-        android:layout_marginTop="550dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/container"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

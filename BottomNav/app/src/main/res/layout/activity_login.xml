@@ -152,5 +152,4 @@
         app:layout_constraintStart_toEndOf="@+id/register"
         app:layout_constraintTop_toBottomOf="@+id/forget_button"
         tools:ignore="TouchTargetSizeCheck" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

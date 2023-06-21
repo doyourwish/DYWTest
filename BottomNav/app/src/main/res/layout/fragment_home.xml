@@ -38,22 +38,27 @@
     <TextView
         android:id="@+id/schedule"
         android:layout_width="fill_parent"
-        android:layout_height="550dp"
+        android:layout_height="0dp"
         android:background="@drawable/shape_style2"
         android:text="@string/schedule"
         android:layout_below="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/advertisement"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
 
-    <TextView
+
+
+    <com.google.android.gms.ads.AdView
         android:id="@+id/advertisement"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:text="@string/advertisement"
         android:background="@drawable/shape_style2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/schedule"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
