@@ -47,8 +47,6 @@
         app:layout_constraintBottom_toTopOf="@+id/advertisement"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
 
-
-
     <com.google.android.gms.ads.AdView
         android:id="@+id/advertisement"
         android:layout_width="0dp"

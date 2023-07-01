@@ -63,7 +63,6 @@
     <string name="login_register">アカウントをお持ちでない場合、</string>
     <string name="login_register_button">登録はこちら</string>
 
-
     <!-- クローゼット画面   -->
     <string name="closet_title">クローゼット</string>
     <string name="closet_tab1">表示</string>
@@ -79,7 +78,6 @@
     <string name="closet_note">以下から選択し、服装を登録してください</string>
     <string name="closet_album">アルバムから追加</string>
     <string name="closet_camera">カメラから追加</string>
-
 
     <!-- クローゼット画面削除   -->
     <string name="closet_unselect">選択解除</string>
@@ -98,7 +96,7 @@
     <!-- ログイン登録画面   -->
     <string name="login_register_title">アカウント新規登録(要藤さん作成)</string>
 
-    <!-- 広告   -->
-
+    <!-- 位置情報画面   -->
+    <string name="location_button">位置情報取得画面へ(デバック用)</string>
 
 </resources>
