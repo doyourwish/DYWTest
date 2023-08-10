@@ -1,13 +1,23 @@
 package com.example.bottomnav;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.fragment.app.FragmentManager;
+import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.UpdateAvailability;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment=new HomeFragment();
     ClosetFragment closetFragment=new ClosetFragment();
     CalendarFragment calendarFragment=new CalendarFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,3 +82,4 @@ public class MainActivity extends AppCompatActivity {
                 new HomeFragment()).commit();
     }
 }
+

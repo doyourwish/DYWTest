@@ -25,11 +25,12 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         adView = view.findViewById(R.id.advertisement);
-        // ボタンにクリックイベントを設定する
-        ImageButton button = view.findViewById(R.id.setting_button);
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        // ボタンにクリックイベントを設定する
+        ImageButton button = view.findViewById(R.id.setting_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +40,21 @@ public class HomeFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, secondFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        ImageButton button2= view.findViewById(R.id.notification_button);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 遷移先のFragmentを作成する
+                Fragment secondFragment2 = new Notification_Fragment();
+                // FragmentManagerを使って遷移する
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, secondFragment2);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

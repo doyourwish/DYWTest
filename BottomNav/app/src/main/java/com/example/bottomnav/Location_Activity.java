@@ -1,14 +1,11 @@
 package com.example.bottomnav;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import android.os.Bundle;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -95,15 +92,5 @@ public class Location_Activity extends AppCompatActivity implements LocationList
         TextView textView2 = findViewById(R.id.text_view2);
         String str2 = "Longitude:"+location.getLongitude();
         textView2.setText(str2);
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
     }
 }
