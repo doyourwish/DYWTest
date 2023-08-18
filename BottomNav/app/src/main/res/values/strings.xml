@@ -96,11 +96,12 @@
     <!-- ログイン登録画面   -->
     <string name="login_register_title">アカウント新規登録(要藤さん作成)</string>
 
-    <!-- 位置情報画面   -->
-    <string name="location_button">位置情報取得画面へ(デバック用)</string>
+    <!-- カレンダー画面   -->
+    <string name="tv_winfo_title">お天気詳細</string>
 
     <!-- お知らせ画面   -->
     <string name="notification_title">お知らせ</string>
+
 
 
 

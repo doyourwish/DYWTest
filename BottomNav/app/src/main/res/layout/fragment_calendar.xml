@@ -20,17 +20,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:id="@+id/location_button"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:gravity="center"
-        android:text="@string/location_button"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="parent"
+    <ListView
+        android:id="@+id/lvCityList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toTopOf="@+id/text"/>
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/tv_winfo_title"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+
+    <TextView
+        android:id="@+id/tvWeatherTelop"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text"/>
+
+    <TextView
+        android:id="@+id/tvWeatherDesc"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeatherTelop"/>
+
+    <TextView
+        android:id="@+id/tvMaxTemp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeatherDesc"/>
+
+    <TextView
+        android:id="@+id/tvMinTemp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMaxTemp"/>
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
