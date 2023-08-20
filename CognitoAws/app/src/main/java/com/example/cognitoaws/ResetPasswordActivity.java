@@ -1,5 +1,7 @@
 package com.example.cognitoaws;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,8 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDel
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
+
+import java.util.Objects;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -66,8 +70,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         cognitoUser.forgotPasswordInBackground(new ForgotPasswordHandler() {
             @Override
             public void onSuccess() {
-                // パスワード再設定コードの送信に成功した場合の処理
-                // この時点でパスワード再設定コードを取得できる
+                // パスワード再設定に成功した場合の処理
+                showPopup("Success", "Set NewPassword was success");
             }
 
             @Override
@@ -75,11 +79,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 // パスワード再設定コードを取得した場合の処理
                 // このコードをユーザーに提示して、新しいパスワードを設定させる
                 forgotPasswordContinuation = continuation;
+                showPopup("Success", "Send Code was Success. Check your email box");
             }
 
             @Override
             public void onFailure(Exception exception) {
                 // パスワード再設定に失敗した場合の処理
+                showPopup("Error", "Set NewPassword was failed: " + exception.getMessage());
             }
         });
     }
@@ -88,19 +94,42 @@ public class ResetPasswordActivity extends AppCompatActivity {
         String passcode = editTextPasscode.getText().toString();
         String newPassword = editTextNewPassword.getText().toString();
 
+        if(Objects.isNull(forgotPasswordContinuation)){
+            showPopup("Empty", "No Send code: Please send code");
+            return;
+        }
+        if (passcode.isEmpty()) {
+            showPopup("Empty", "Passcode is empty");
+            return;
+        }
+        if (newPassword.isEmpty()) {
+            showPopup("Empty", "New Password is empty");
+            return;
+        }
+
         try {
             // 新しいパスワードを設定
             forgotPasswordContinuation.setPassword(newPassword);
             forgotPasswordContinuation.setVerificationCode(passcode);
+            // この処理でForgotPasswordHandlerのonSuccessやonFailureに移る
             forgotPasswordContinuation.continueTask();
-
-            // ログ
-            CognitoUserCodeDeliveryDetails params = forgotPasswordContinuation.getParameters();
-            Log.d("params.getDestination",params.getDestination());
-            Log.d("params.getAttributeName",params.getAttributeName());
-            Log.d("params.getDeliveryMedium",params.getDeliveryMedium());
         } catch(Exception e){
-            Log.e("forgotPasswordContinuation","パスワード再設定コードを先に取得してください");
+            showPopup("Error", "No Send code: " + e.getMessage());
         }
+    }
+
+    private void showPopup(String title, String message) {
+        android.app.AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+
+        alertDialog.show();
     }
 }

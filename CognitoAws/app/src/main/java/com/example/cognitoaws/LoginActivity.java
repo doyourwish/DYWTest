@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         // ログイン失敗時の処理
                         Log.e("login", "ログイン失敗: " + exception.getMessage());
                         // ログイン失敗時のポップアップ表示
-                        showPopup("Error", "SignUp failed: " + exception.getMessage());
+                        showPopup("Error", "Login was failed: " + exception.getMessage());
                     }
                 });
             }

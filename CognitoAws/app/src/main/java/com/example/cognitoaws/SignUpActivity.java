@@ -12,22 +12,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 
-//現在はSESでメールアドレスが認証されてる時のみ、SignUpが成功する
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private EditText confirmationCodeEditText;
     private Button signUpButton;
+    private Button confirmButton;
 
     final private CognitoConfigure cognitoConfigure = new CognitoConfigure();
 
     // CognitoUserPoolオブジェクト
     private CognitoUserPool userPool;
+    private CognitoUser cognitoUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        confirmationCodeEditText = findViewById(R.id.confirmationCodeEditText);
         signUpButton = findViewById(R.id.signUpButton);
+        confirmButton = findViewById(R.id.confirmButton);
 
         // ユーザープールの初期化
         userPool = new CognitoUserPool(getApplicationContext(),
@@ -49,6 +54,14 @@ public class SignUpActivity extends AppCompatActivity {
                 signUpUser();
             }
         });
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmSignUp();
+            }
+        });
+
     }
 
     private void signUpUser() {
@@ -65,10 +78,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                 // SignUp 成功時の処理
-                CodeDeliveryDetailsType codeDeliveryDetails = signUpResult.getCodeDeliveryDetails();
                 // 確認コードの送信方法などの情報を取得できます。
+                CodeDeliveryDetailsType codeDeliveryDetails = signUpResult.getCodeDeliveryDetails();
+                cognitoUser = user;
                 // SignUp 成功時のポップアップ表示
-                showPopup("Success", "SignUp was successful.");
+                showPopup("Success", "Send Code was Success. Check your email box");
             }
 
             @Override
@@ -76,7 +90,23 @@ public class SignUpActivity extends AppCompatActivity {
                 // SignUp 失敗時の処理
                 // エラーメッセージの表示や適切な処理を行うことができます。
                 // SignUp 失敗時のポップアップ表示
-                showPopup("Error", "SignUp failed: " + exception.getMessage());
+                showPopup("Error", "Send Code failed: " + exception.getMessage());
+            }
+        });
+    }
+
+    private void confirmSignUp() {
+        String confirmationCode = confirmationCodeEditText.getText().toString();
+
+        cognitoUser.confirmSignUpInBackground(confirmationCode, false, new GenericHandler() {
+            @Override
+            public void onSuccess() {
+                showPopup("Success", "Account confirmed. You can now sign in.");
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                showPopup("Error", "Confirmation failed: " + exception.getMessage());
             }
         });
     }

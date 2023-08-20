@@ -13,14 +13,13 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 
-//Cognitoのユーザー削除は、認証情報を持つユーザー（通常は管理者）がする必要があるらしい
+//確認ステータスが「確認済」の時は削除できるが、他のステータスでは管理者権限が必要らしい
 //管理者で削除する場合は、CLIで以下の操作で削除できることを確認済
 //$ aws cognito-idp admin-delete-user \
 //        --user-pool-id ユーザープールID \
 //        --username ユーザー名
 
-//管理者で実行する方法が分からないので、未完成
-//Lambda経由でユーザー削除処理予定
+//ユーザー削除時に、LambdaによるDB情報の削除も必要
 
 public class DeleteActivity extends AppCompatActivity {
     final private CognitoConfigure cognitoConfigure = new CognitoConfigure();
@@ -46,8 +45,8 @@ public class DeleteActivity extends AppCompatActivity {
 
     private void showConfirmationPopup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("ユーザー削除の確認")
-                .setMessage("本当にユーザーを削除しますか？")
+        builder.setTitle("Delete user")
+                .setMessage("Are you sure you want to delete the user?")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -55,7 +54,7 @@ public class DeleteActivity extends AppCompatActivity {
                         dialogInterface.dismiss();
                     }
                 })
-                .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -68,7 +67,7 @@ public class DeleteActivity extends AppCompatActivity {
         String usernameToDelete = usernameEditText.getText().toString();
 
         if (usernameToDelete.isEmpty()) {
-            showPopup("エラー", "ユーザー名を入力してください。");
+            showPopup("Error", "Please input user name");
             return;
         }
 

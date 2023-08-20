@@ -32,4 +32,21 @@
         android:layout_marginTop="24dp"
         android:text="Sign Up" />
 
+    <EditText
+        android:id="@+id/confirmationCodeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signUpButton"
+        android:layout_marginTop="16dp"
+        android:hint="Confirmation Code"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirmationCodeEditText"
+        android:layout_marginTop="16dp"
+        android:text="Confirm" />
+
 </RelativeLayout>
