@@ -2,7 +2,6 @@ package com.example.bottomnav;
 
 import androidx.annotation.UiThread;
 import androidx.annotation.WorkerThread;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.os.HandlerCompat;
 
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -27,26 +27,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import android.os.Bundle;
+
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.provider.CalendarContract;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-
-import com.google.android.gms.ads.AdRequest;
 
 public class CalendarFragment extends Fragment {
     private View rootView;
@@ -57,7 +49,8 @@ public class CalendarFragment extends Fragment {
     /**
      * お天気情報のURL。
      */
-    private static final String WEATHERINFO_URL = "https://api.openweathermap.org/data/2.5/weather?lang=ja";
+    private static final String WEATHERINFO_URL = "https://api.openweathermap.org/data/2.5/weather?";
+    //private static final String WEATHERINFO_URL = "https://api.openweathermap.org/data/2.5/weather?lang=ja";
     /**
      * お天気APIにアクセスすするためのAPIキー。
      * ※※※※※この値は各自のものに書き換える!!※※※※※
@@ -68,11 +61,13 @@ public class CalendarFragment extends Fragment {
      */
     private List<Map<String, String>> _list;
 
+    private ImageView weatherIcon;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
-
-        _list  = createList();
+        _list = createList();
+        weatherIcon = rootView.findViewById(R.id.weatherIcon);
 
         ListView lvCityList = rootView.findViewById(R.id.lvCityList);
         String[] from = {"name"};
@@ -133,7 +128,7 @@ public class CalendarFragment extends Fragment {
         Looper mainLooper = Looper.getMainLooper();
         Handler handler = HandlerCompat.createAsync(mainLooper);
         WeatherInfoBackgroundReceiver backgroundReceiver = new WeatherInfoBackgroundReceiver(handler, urlFull);
-        ExecutorService executorService  = Executors.newSingleThreadExecutor();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.submit(backgroundReceiver);
     }
 
@@ -157,7 +152,7 @@ public class CalendarFragment extends Fragment {
          * @param handler ハンドラオブジェクト。
          * @param urlFull お天気情報を取得するURL。
          */
-        public WeatherInfoBackgroundReceiver(Handler handler , String urlFull) {
+        public WeatherInfoBackgroundReceiver(Handler handler, String urlFull) {
             _handler = handler;
             _urlFull = urlFull;
         }
@@ -189,28 +184,24 @@ public class CalendarFragment extends Fragment {
                 // レスポンスデータであるInputStreamオブジェクトを文字列に変換。
                 result = is2String(is);
 
-            }
-            catch(MalformedURLException ex) {
+            } catch (MalformedURLException ex) {
                 Log.e(DEBUG_TAG, "URL変換失敗", ex);
             }
             // タイムアウトの場合の例外処理。
-            catch(SocketTimeoutException ex) {
+            catch (SocketTimeoutException ex) {
                 Log.w(DEBUG_TAG, "通信タイムアウト", ex);
-            }
-            catch(IOException ex) {
+            } catch (IOException ex) {
                 Log.e(DEBUG_TAG, "通信失敗", ex);
-            }
-            finally {
+            } finally {
                 // HttpURLConnectionオブジェクトがnullでないなら解放。
-                if(con != null) {
+                if (con != null) {
                     con.disconnect();
                 }
                 // InputStreamオブジェクトがnullでないなら解放。
-                if(is != null) {
+                if (is != null) {
                     try {
                         is.close();
-                    }
-                    catch(IOException ex) {
+                    } catch (IOException ex) {
                         Log.e(DEBUG_TAG, "InputStream解放失敗", ex);
                     }
                 }
@@ -227,11 +218,11 @@ public class CalendarFragment extends Fragment {
          * @throws IOException 変換に失敗した時に発生。
          */
         private String is2String(InputStream is) throws IOException {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            StringBuffer sb = new StringBuffer();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
             char[] b = new char[1024];
             int line;
-            while(0 <= (line = reader.read(b))) {
+            while (0 <= (line = reader.read(b))) {
                 sb.append(b, 0, line);
             }
             return sb.toString();
@@ -300,8 +291,7 @@ public class CalendarFragment extends Fragment {
                 double tempMinKelvin = mainJSON.getDouble("temp_min");
                 // ケルビンを摂氏に変換
                 minTemp = String.format("%.1f ℃", tempMinKelvin - 273.15);
-            }
-            catch(JSONException ex) {
+            } catch (JSONException ex) {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
@@ -318,6 +308,11 @@ public class CalendarFragment extends Fragment {
             // 天気情報を表示。
             tvWeatherTelop.setText(telop);
             tvWeatherDesc.setText(desc);
+
+            // Get the weather icon resource based on weather condition
+            int weatherIconResource = getWeatherIconResource(weather);
+            // Set the ImageView's image resource to the selected weather icon
+            weatherIcon.setImageResource(weatherIconResource);
         }
     }
 
@@ -331,6 +326,41 @@ public class CalendarFragment extends Fragment {
             String q = item.get("q");
             String urlFull = WEATHERINFO_URL + "&q=" + q + "&appid=" + APP_ID;
             receiveWeatherInfo(urlFull);
+        }
+    }
+
+    private int getWeatherIconResource(String weather) {
+        Log.d(DEBUG_TAG, "Weather: " + weather);
+        switch (weather) {
+            default:
+                return R.drawable.question_mark_fill0_wght400_grad0_opsz24;
+
+            case "broken clouds":
+                return R.drawable.broken_clouds;
+
+            case "scattered clouds":
+                return R.drawable.scattered_clouds;
+
+            case "few clouds":
+                return R.drawable.few_clouds;
+
+            case "rain":
+                return R.drawable.rain;
+
+            case "shower rain":
+                return R.drawable.shower_rain;
+
+            case "clear sky":
+                return R.drawable.clear_sky;
+
+            case "snow":
+                return R.drawable.snow;
+
+            case "mist":
+                return R.drawable.mist;
+
+            case "thunderstorm":
+                return R.drawable.thunderstorm;
         }
     }
 }
