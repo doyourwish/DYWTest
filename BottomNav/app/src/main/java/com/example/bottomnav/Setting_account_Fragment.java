@@ -1,15 +1,15 @@
 package com.example.bottomnav;
 
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 public class Setting_account_Fragment extends Fragment {
@@ -32,6 +32,18 @@ public class Setting_account_Fragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        // パスワード再設定ボタン
+        ImageButton password_button = view.findViewById(R.id.password_button);
+        password_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity main_activity = (MainActivity) getActivity();
+                Intent intent = new Intent(main_activity, SendMailForResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
 
     }
