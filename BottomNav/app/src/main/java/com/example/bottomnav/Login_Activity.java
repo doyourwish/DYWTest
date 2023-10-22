@@ -1,16 +1,12 @@
 package com.example.bottomnav;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Login_Activity extends AppCompatActivity {
@@ -20,36 +16,41 @@ public class Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button Button = findViewById(R.id.forget_button);
-        // lambda式
-        Button.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplication(), Login_Forget.class);
+        // 既にログインしてる場合、自動ログインして画面を閉じる
+        UserMailAddress userMailAddress = new UserMailAddress(Login_Activity.this);
+        if(userMailAddress.getUserMailAddress() != null){
+            Intent intent = new Intent(getApplication(), MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        // パスワード忘却テキスト
+        TextView forget_text = findViewById(R.id.forget_text);
+        forget_text.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplication(), SendMailForResetPasswordActivity.class);
             startActivity(intent);
         });
 
-        Button Button2 = findViewById(R.id.register_button);
-        // lambda式
-        Button2.setOnClickListener(v -> {
+        // アカウント登録テキスト
+        TextView register_text = findViewById(R.id.register_text);
+        register_text.setOnClickListener(v -> {
             Intent intent = new Intent(getApplication(), Register.class);
             startActivity(intent);
         });
 
-        Button Button3 = findViewById(R.id.login);
-        // lambda式
-        Button3.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplication(), MainActivity.class);
-            startActivity(intent);
-        });
-
-        final CheckBox checkbox = (CheckBox)findViewById(R.id.checkbox);
-        checkbox.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(checkbox.isChecked() == true) {
-                }
-                else {
-                }
-            }
+        // ログインボタン
+        EditText text_email = findViewById(R.id.email);
+        EditText text_password = findViewById(R.id.password);
+        Button login_button = findViewById(R.id.login_button);
+        login_button.setOnClickListener(v -> {
+            String email = text_email.getText().toString();
+            String password = text_password.getText().toString();
+            //login
+            //パスワード入力を反映させるために、一度サインアウト
+            CognitoLogin cognitoLogin = new CognitoLogin(Login_Activity.this);
+            cognitoLogin.signOut(email);
+            cognitoLogin.login(email,password);
         });
     }
 }

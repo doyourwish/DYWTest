@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +18,12 @@ public class Setting_account_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting_account, container, false);
+
+        // メールアドレスを表示
+        UserMailAddress userMailAddress = new UserMailAddress((MainActivity) getActivity());
+        TextView textMailAddress = view.findViewById(R.id.mail_address);
+        textMailAddress.setText(userMailAddress.getUserMailAddress());
+
         // ボタンにクリックイベントを設定する
         ImageButton button = view.findViewById(R.id.return_button);
         button.setOnClickListener(new View.OnClickListener() {

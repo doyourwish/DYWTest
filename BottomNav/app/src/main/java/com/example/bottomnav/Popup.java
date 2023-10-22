@@ -3,6 +3,7 @@ package com.example.bottomnav;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 
 //TODO:クラス構造検討
@@ -59,7 +60,7 @@ public class Popup {
 
     public boolean showPopupTwoButtonWithActivityFinish(String title, String message) {
         if(activity == null){
-            Log.e("Popup.showPopup","activity is null");
+            Log.e("Popup.showPopupTwoButtonWithActivityFinish","activity is null");
             return false;
         }
         android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
@@ -76,6 +77,29 @@ public class Popup {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                    }
+                })
+                .create();
+
+        alertDialog.show();
+        return true;
+    }
+
+    public boolean showPopupWithActivityChange(String title, String message,Class<?> cls){
+        if(activity == null){
+            Log.e("Popup.showPopupWithActivityChange","activity is null");
+            return false;
+        }
+        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(activity.getApplication(), cls);
+                        activity.startActivity(intent);
+                        activity.finish();
                     }
                 })
                 .create();

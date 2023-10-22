@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F5F5F5"
+    android:background="@color/grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login_Activity">
@@ -11,11 +11,10 @@
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#F5F5F5"
         android:text="@string/login_app_title"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:textColor="#000000"
+        android:textColor="@color/dark_orange"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="textEmailAddress"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -46,51 +45,24 @@
         android:layout_marginRight="15dp"
         android:gravity="center_vertical"
         android:hint="@string/login_password"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <CheckBox android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="12sp"
-        android:gravity="center"
-        android:text="@string/login_checkbox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        android:onClick="onCheckboxClicked"/>
-
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/login_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="@string/login_button"
         android:textSize="20sp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox" />
-
-    <TextView
-        android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="2105dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:text="@string/login_skip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/forget"
@@ -98,58 +70,51 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:textSize="12sp"
-        android:gravity="center"
         android:text="@string/login_forget"
-        app:layout_constraintStart_toStartOf="@+id/checkbox"
-        app:layout_constraintEnd_toStartOf="@+id/forget_button"
-        app:layout_constraintTop_toBottomOf="@+id/skip" />
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintEnd_toStartOf="@id/forget_text"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
-    <Button
-        android:id="@+id/forget_button"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="80dp"
+    <TextView
+        android:id="@+id/forget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:background="#F5F5F5"
         app:backgroundTint="@color/grey"
-        android:gravity="center"
         android:padding="0dp"
         android:text="@string/login_forget_button"
         android:textColor="#0000FF"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/login"
         app:layout_constraintStart_toEndOf="@+id/forget"
-        app:layout_constraintTop_toBottomOf="@+id/skip"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button"/>
 
     <TextView
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
         android:textSize="14sp"
         android:gravity="center"
         android:text="@string/login_register"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintEnd_toStartOf="@+id/register_button"
+        app:layout_constraintStart_toStartOf="@+id/forget"
+        app:layout_constraintEnd_toStartOf="@+id/register_text"
         app:layout_constraintTop_toBottomOf="@+id/forget" />
 
-    <Button
-        android:id="@+id/register_button"
+    <TextView
+        android:id="@+id/register_text"
         android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="0dp"
-        android:background="#F5F5F5"
+        android:background="@color/sky_blue"
         app:backgroundTint="@color/grey"
         android:gravity="center"
         android:padding="0dp"
         android:text="@string/login_register_button"
-        android:textColor="#0000FF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/login"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/register"
-        app:layout_constraintTop_toBottomOf="@+id/forget_button"
+        app:layout_constraintTop_toBottomOf="@+id/forget_text"
         tools:ignore="TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
