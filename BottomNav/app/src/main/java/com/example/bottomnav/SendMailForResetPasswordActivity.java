@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,19 +21,20 @@ public class SendMailForResetPasswordActivity extends AppCompatActivity {
         Popup popup = new Popup(SendMailForResetPasswordActivity.this);
         UserMailAddress userMailAddress = new UserMailAddress(SendMailForResetPasswordActivity.this);
 
-        // メールアドレス保存(デバッグ用)
-        // 本来はログイン後に保存される情報
-        // TODO:ログイン画面に処理を実装後、消去
-        // userMailAddress.saveUserMailAddress("sample@gmail.com");
-
         //メールアドレス表示
         String mailAddress = userMailAddress.getUserMailAddress();
+        TextView loginEmailTextView = findViewById(R.id.login_email_text);
+        EditText loginEmailEditText = findViewById(R.id.login_email_edit);
         if(mailAddress == null){
-            popup.showPopup("メールアドレス取得失敗", "再ログインしてください");
-            Log.e("mail_address","mail_address is null because you didn't log in");
+            loginEmailTextView.setVisibility(View.GONE);
+            loginEmailEditText.setVisibility(View.VISIBLE);
+            Log.d("mail_address","mail_address is null because you didn't log in");
         }
-        TextView loginEmailTextView = findViewById(R.id.login_email);
-        loginEmailTextView.setText(mailAddress);
+        else {
+            loginEmailTextView.setVisibility(View.VISIBLE);
+            loginEmailEditText.setVisibility(View.GONE);
+            loginEmailTextView.setText(mailAddress);
+        }
 
         //送信ボタン
         Button send_button = findViewById(R.id.send_button);
@@ -43,15 +45,16 @@ public class SendMailForResetPasswordActivity extends AppCompatActivity {
             //ネットワーク操作があるクラスは別のActivityにインスタンスを渡すためのSerializeができないため、
             //遷移先の画面でメール送信を行う
             Intent intent = new Intent(getApplication(), ResetPasswordActivity.class);
-            intent.putExtra(getString(R.string.user_mail_address_key),mailAddress);
+            if(mailAddress == null){
+                intent.putExtra(getString(R.string.user_mail_address_key),loginEmailEditText.getText().toString());
+            }
+            else {
+                intent.putExtra(getString(R.string.user_mail_address_key),mailAddress);
+            }
             startActivity(intent);
             //パスワード再設定メール送信画面を閉じる
             finish();
         });
-        if(mailAddress == null){
-            send_button.setEnabled(false);
-            send_button.setBackgroundColor(Color.GRAY);
-        }
 
         //戻るボタン
         Button return_button = findViewById(R.id.return_button);
