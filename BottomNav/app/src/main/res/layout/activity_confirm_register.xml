@@ -13,7 +13,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/app_title"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/dark_orange"/>
 
@@ -24,7 +24,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/register_title"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <TextView
@@ -34,69 +34,21 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/register_mail_address"
-        android:textSize="16sp"/>
+        android:text="@string/confirm_register_passcode"
+        android:textSize="15dp"/>
 
     <EditText
-        android:id="@+id/register_mail_address_box_1"
+        android:id="@+id/passcode_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="18sp"
-        android:hint="@string/register_mail_address_box_1"
-        android:inputType="textEmailAddress"
-        android:background="@color/white"/>
-
-    <EditText
-        android:id="@+id/register_mail_address_box_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="18sp"
-        android:hint="@string/register_mail_address_box_2"
-        android:inputType="textEmailAddress"
-        android:background="@color/white"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/register_password"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/register_password_box_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="18sp"
-        android:hint="@string/register_password_box_1"
-        android:inputType="textPassword"
-        android:background="@color/white"/>
-
-    <EditText
-        android:id="@+id/register_password_box_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="18sp"
-        android:hint="@string/register_password_box_2"
-        android:inputType="textPassword"
+        android:textSize="20dp"
+        android:hint="@string/passcode_box"
+        android:inputType="number"
+        android:maxLength="6"
         android:background="@color/white"/>
 
     <LinearLayout
@@ -127,6 +79,16 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/confirm_register_after_mail_send_description"
+        android:textSize="10dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -138,17 +100,17 @@
         android:layout_gravity="center">
 
         <TextView
-            android:id="@+id/register_already_register_text"
+            android:id="@+id/confirm_register_concern_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_already_register_text"/>
+            android:text="@string/confirm_register_concern_text"/>
 
         <TextView
-            android:id="@+id/register_already_register_click"
+            android:id="@+id/reset_password_concern_click"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
-            android:text="@string/register_already_register_click"/>
+            android:text="@string/reset_password_concern_click"/>
 
     </LinearLayout>
 

@@ -59,7 +59,15 @@ public class CognitoLogin {
                 Log.d("login", "リフレッシュトークン: " + refreshToken);
 
                 // ログイン成功時のポップアップ表示
-                popup.showPopupWithActivityChange("Success", "Login was successful.", MainActivity.class);
+                // 初期登録完了前後で画面遷移を分岐
+                // TODO:DB取得実装
+                boolean isRegisterUserInfo = false; //search user email from DB
+                if(isRegisterUserInfo){
+                    popup.showPopupWithActivityChange("Success", "Login was successful.", MainActivity.class);
+                }
+                else{
+                    popup.showPopupWithActivityChange("Success", "Login was successful.", GenderAgeActivity.class);
+                }
             }
 
             @Override
