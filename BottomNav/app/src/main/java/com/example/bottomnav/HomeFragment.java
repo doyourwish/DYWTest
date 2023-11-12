@@ -1,10 +1,6 @@
 package com.example.bottomnav;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,52 +9,35 @@ import android.widget.ImageButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class HomeFragment extends Fragment {
-    private AdView adView;
-    public static Fragment newInstance(int count) {
-        return new HomeFragment();
-    }
+public class HomeFragment extends FragmentHandler {
 
-    // Fragmentのレイアウトを設定するためのメソッド
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        adView = view.findViewById(R.id.advertisement);
-
+        // 広告表示
+        AdView adView = view.findViewById(R.id.advertisement);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
-        // ボタンにクリックイベントを設定する
-        ImageButton button = view.findViewById(R.id.setting_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        // 設定ボタン
+        ImageButton setting_button = view.findViewById(R.id.setting_button);
+        setting_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment = new SettingFragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new SettingFragment());
             }
         });
 
-        ImageButton button2= view.findViewById(R.id.notification_button);
-        button2.setOnClickListener(new View.OnClickListener() {
+        // 通知ボタン
+        ImageButton notification_button= view.findViewById(R.id.notification_button);
+        notification_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment2 = new Notification_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Notification_Fragment());
             }
         });
+
         return view;
     }
 }

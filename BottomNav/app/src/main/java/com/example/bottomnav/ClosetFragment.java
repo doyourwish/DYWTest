@@ -1,65 +1,44 @@
 package com.example.bottomnav;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 
-public class ClosetFragment extends Fragment {
+public class ClosetFragment extends FragmentHandler {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_closet, container, false);
-        // ボタンにクリックイベントを設定する
-        Button button = view.findViewById(R.id.display);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        // 表示ボタン
+        Button display_button = view.findViewById(R.id.display);
+        display_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment = new ClosetFragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new ClosetFragment());
             }
         });
 
-        Button button2 = view.findViewById(R.id.register);
-        button2.setOnClickListener(new View.OnClickListener() {
+        // 登録ボタン
+        Button register_button = view.findViewById(R.id.register);
+        register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment = new Closet_register_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Closet_register_Fragment());
             }
         });
 
-        Button button3 = view.findViewById(R.id.delete);
-        button3.setOnClickListener(new View.OnClickListener() {
+        // 削除ボタン
+        Button delete_button = view.findViewById(R.id.delete);
+        delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment = new Closet_delete_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Closet_delete_Fragment());
             }
         });
+
         return view;
     }
 }

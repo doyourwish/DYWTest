@@ -232,7 +232,7 @@ public class CalendarFragment extends Fragment {
     /**
      * 非同期でお天気情報を取得した後にUIスレッドでその情報を表示するためのクラス。
      */
-    private class WeatherInfoPostExecutor implements Runnable {
+    class WeatherInfoPostExecutor implements Runnable {
         /**
          * 取得したお天気情報JSON文字列。
          */

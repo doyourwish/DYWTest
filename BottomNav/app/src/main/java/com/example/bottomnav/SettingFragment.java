@@ -1,118 +1,72 @@
 package com.example.bottomnav;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
-public class SettingFragment extends Fragment {
+public class SettingFragment extends FragmentHandler {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-        // ボタンにクリックイベントを設定する
-        ImageButton button = view.findViewById(R.id.return_button);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        // 戻るボタン
+        ImageButton return_button = view.findViewById(R.id.return_button);
+        return_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment = new HomeFragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new HomeFragment());
             }
         });
 
-        ImageButton button2 = view.findViewById(R.id.setting_button);
-        button2.setOnClickListener(new View.OnClickListener() {
+        // アカウント設定ボタン
+        ImageButton account_setting_button = view.findViewById(R.id.setting_button);
+        account_setting_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment2 = new Setting_account_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Setting_account_Fragment());
             }
         });
 
-        ImageButton button3= view.findViewById(R.id.user_button);
-        button3.setOnClickListener(new View.OnClickListener() {
+        // ユーザー情報設定ボタン
+        ImageButton user_button= view.findViewById(R.id.user_button);
+        user_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment2 = new Setting_user_info_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Setting_user_info_Fragment());
             }
         });
 
-        ImageButton button4= view.findViewById(R.id.security_button);
-        button4.setOnClickListener(new View.OnClickListener() {
+        // セキュリティ設定ボタン
+        ImageButton security_button = view.findViewById(R.id.security_button);
+        security_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment2 = new Setting_security_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Setting_security_Fragment());
             }
         });
 
-        ImageButton button5= view.findViewById(R.id.connection_button);
-        button5.setOnClickListener(new View.OnClickListener() {
+        // 外部サイト連携ボタン
+        ImageButton connection_button = view.findViewById(R.id.connection_button);
+        connection_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment2 = new Setting_external_site_connection_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Setting_external_site_connection_Fragment());
             }
         });
 
-        ImageButton button6= view.findViewById(R.id.info_button);
-        button6.setOnClickListener(new View.OnClickListener() {
+        // アプリ説明ボタン
+        ImageButton info_button = view.findViewById(R.id.info_button);
+        info_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 遷移先のFragmentを作成する
-                Fragment secondFragment2 = new Setting_about_app_Fragment();
-                // FragmentManagerを使って遷移する
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, secondFragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                changeFragment(new Setting_about_app_Fragment());
             }
         });
-
-
-
 
         return view;
-
-
-
     }
 }
 
