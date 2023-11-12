@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".setting.SettingExternalSiteConnectionFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#F5F5F5"
+        android:text="@string/setting_external_site"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ZOZO"/>
+
+    <ImageButton
+        android:id="@+id/return_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/baseline_clear_24"
+        android:onClick="onButtonClick"
+        android:padding="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+    <TextView
+        android:id="@+id/ZOZO"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/shape_style"
+        android:text="@string/setting_ZOZO"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ImageButton
+        android:id="@+id/ZOZO_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/baseline_navigate_next_24"
+        android:onClick="onButtonClick"
+        android:padding="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ZOZO"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/ZOZO_status"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:text="@string/setting_ZOZO_status"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="@+id/ZOZO"
+        app:layout_constraintEnd_toStartOf="@+id/return_button" />
+
+    <TextView
+        android:id="@+id/UNIQLO"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_style"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/setting_UNIQLO"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ZOZO"/>
+
+    <ImageButton
+        android:id="@+id/UNIQLO_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/baseline_navigate_next_24"
+        android:onClick="onButtonClick"
+        android:padding="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/UNIQLO"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/UNIQLO_status"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/setting_ZOZO_status"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="@+id/UNIQLO"
+        app:layout_constraintEnd_toStartOf="@+id/return_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
