@@ -6,17 +6,12 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
-import com.example.bottomnav.common.MyAsyncTask;
 
 public class UserAccountQAActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account_qa_activity);
-
-        //http getテスト
-        MyAsyncTask asyncTask = new MyAsyncTask();
-        asyncTask.execute();
 
         //戻るボタン
         Button return_button = findViewById(R.id.return_button);
