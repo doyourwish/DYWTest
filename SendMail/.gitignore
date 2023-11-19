@@ -16,3 +16,4 @@ local.properties
 
 #user settings
 /app/src/main/assets/tokens
+/python/config.py
