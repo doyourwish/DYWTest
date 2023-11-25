@@ -53,7 +53,7 @@
             android:background="@drawable/shape_style"/>
 
         <TextView
-            android:id="@+id/gene"
+            android:id="@+id/gene_text"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:gravity="center_vertical"
@@ -65,7 +65,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/about_you"
-            android:background="@drawable/shape_style"/>
+            android:background="@drawable/shape_style"
+            android:clickable="true"
+            android:onClick="onTextViewClick"/>
 
         <ImageButton
             android:id="@+id/gene_button"
@@ -79,13 +81,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/gene"
+            app:layout_constraintTop_toTopOf="@+id/gene_text"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
 
         <TextView
-            android:id="@+id/style"
+            android:id="@+id/style_text"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:paddingLeft="20dp"
@@ -96,8 +98,10 @@
             android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gene"
-            android:background="@drawable/shape_style"/>
+            app:layout_constraintTop_toBottomOf="@+id/gene_text"
+            android:background="@drawable/shape_style"
+            android:clickable="true"
+            android:onClick="onTextViewClick"/>
 
         <ImageButton
             android:id="@+id/style_button"
@@ -111,11 +115,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/style"
+            app:layout_constraintTop_toTopOf="@+id/style_text"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
-            android:id="@+id/preference"
+            android:id="@+id/preference_text"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:paddingLeft="20dp"
@@ -126,8 +130,10 @@
             android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/style"
-            android:background="@drawable/shape_style"/>
+            app:layout_constraintTop_toBottomOf="@+id/style_text"
+            android:background="@drawable/shape_style"
+            android:clickable="true"
+            android:onClick="onTextViewClick"/>
 
         <ImageButton
             android:id="@+id/preference_button"
@@ -141,7 +147,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/preference"
+            app:layout_constraintTop_toTopOf="@+id/preference_text"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

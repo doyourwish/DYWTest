@@ -50,7 +50,7 @@
 
 
     <TextView
-        android:id="@+id/account"
+        android:id="@+id/account_text"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:drawableStart="@drawable/baseline_account_circle_24"
@@ -63,7 +63,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setting"
-        android:background="@drawable/shape_style"/>
+        android:background="@drawable/shape_style"
+        android:clickable="true"
+        android:onClick="onTextViewClick"/>
 
 
     <ImageButton
@@ -78,11 +80,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/account"
+        app:layout_constraintTop_toTopOf="@+id/account_text"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/user_info"
+        android:id="@+id/user_info_text"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
@@ -94,8 +96,10 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account"
-        android:background="@drawable/shape_style"/>
+        app:layout_constraintTop_toBottomOf="@+id/account_text"
+        android:background="@drawable/shape_style"
+        android:clickable="true"
+        android:onClick="onTextViewClick"/>
 
 
     <ImageButton
@@ -110,11 +114,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_info"
+        app:layout_constraintTop_toTopOf="@+id/user_info_text"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/security"
+        android:id="@+id/security_text"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
@@ -126,8 +130,10 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_info"
-        android:background="@drawable/shape_style"/>
+        app:layout_constraintTop_toBottomOf="@+id/user_info_text"
+        android:background="@drawable/shape_style"
+        android:clickable="true"
+        android:onClick="onTextViewClick"/>
 
 
     <ImageButton
@@ -142,11 +148,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/security"
+        app:layout_constraintTop_toTopOf="@+id/security_text"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/connection"
+        android:id="@+id/connection_text"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
@@ -158,8 +164,10 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/security"
-        android:background="@drawable/shape_style"/>
+        app:layout_constraintTop_toBottomOf="@+id/security_text"
+        android:background="@drawable/shape_style"
+        android:clickable="true"
+        android:onClick="onTextViewClick"/>
 
     <ImageButton
         android:id="@+id/connection_button"
@@ -173,25 +181,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/connection"
+        app:layout_constraintTop_toTopOf="@+id/connection_text"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/support"
+        android:id="@+id/support_text"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:onClick="onTextViewClick"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="@string/support"
         android:textSize="15sp"
-        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connection"/>
+        app:layout_constraintTop_toBottomOf="@+id/connection_text"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
     <TextView
-        android:id="@+id/info"
+        android:id="@+id/info_text"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
@@ -203,8 +214,10 @@
         android:drawableStart="@drawable/info_48px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/support"
-        android:background="@drawable/shape_style"/>
+        app:layout_constraintTop_toBottomOf="@+id/support_text"
+        android:background="@drawable/shape_style"
+        android:clickable="true"
+        android:onClick="onTextViewClick"/>
 
 
     <ImageButton
@@ -219,11 +232,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/info"
+        app:layout_constraintTop_toTopOf="@+id/info_text"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/log"
+        android:id="@+id/log_text"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:paddingLeft="20dp"
@@ -234,10 +247,10 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info"/>
+        app:layout_constraintTop_toBottomOf="@+id/info_text"/>
 
     <TextView
-        android:id="@+id/ver"
+        android:id="@+id/ver_text"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:paddingLeft="20dp"

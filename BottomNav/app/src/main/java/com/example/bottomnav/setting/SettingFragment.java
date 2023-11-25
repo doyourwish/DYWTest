@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.common.FragmentHandler;
@@ -34,9 +35,27 @@ public class SettingFragment extends FragmentHandler {
             }
         });
 
+        //アカウントテキスト
+        TextView account_textView = view.findViewById(R.id.account_text);
+        account_textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new SettingAccountFragment());
+            }
+        });
+
         // ユーザー情報設定ボタン
         ImageButton user_button= view.findViewById(R.id.user_button);
         user_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new SettingUserInfoFragment());
+            }
+        });
+
+        // ユーザー情報設定テキスト
+        TextView user_info_textView = view.findViewById(R.id.user_info_text);
+        user_info_textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeFragment(new SettingUserInfoFragment());
@@ -52,9 +71,27 @@ public class SettingFragment extends FragmentHandler {
             }
         });
 
+        // セキュリティ設定テキスト
+        TextView security_textView = view.findViewById(R.id.security_text);
+        security_textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new SettingSecurityFragment());
+            }
+        });
+
         // 外部サイト連携ボタン
         ImageButton connection_button = view.findViewById(R.id.connection_button);
         connection_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new SettingExternalSiteConnectionFragment());
+            }
+        });
+
+        // 外部サイト連携テキスト
+        TextView connection_textView = view.findViewById(R.id.connection_text);
+        connection_textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeFragment(new SettingExternalSiteConnectionFragment());
@@ -70,6 +107,14 @@ public class SettingFragment extends FragmentHandler {
             }
         });
 
+        // アプリ説明テキスト
+        TextView info_textView = view.findViewById(R.id.info_text);
+        info_textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new SettingAboutAppFragment());
+            }
+        });
         return view;
     }
 }
