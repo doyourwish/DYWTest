@@ -12,6 +12,7 @@ import com.example.bottomnav.R;
 import com.example.bottomnav.common.FragmentHandler;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.home.MainActivity;
+import com.example.bottomnav.setting.account.SendMailForResetMailAddressActivity;
 import com.example.bottomnav.setting.account.SendMailForResetPasswordActivity;
 
 
@@ -35,6 +36,17 @@ public class SettingAccountFragment extends FragmentHandler {
             }
         });
 
+        // メールアドレス再設定ボタン
+        ImageButton reset_mail_address_button = view.findViewById(R.id.mail_button);
+        reset_mail_address_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity main_activity = (MainActivity) getActivity();
+                Intent intent = new Intent(main_activity, SendMailForResetMailAddressActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // パスワード再設定ボタン
         ImageButton reset_password_button = view.findViewById(R.id.password_button);
         reset_password_button.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +60,18 @@ public class SettingAccountFragment extends FragmentHandler {
 
         return view;
 
+    }
+
+    //復帰した時に再描画する？
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        View view = getLayoutInflater().inflate(R.layout.fragment_setting_account, (ViewGroup)getView().getParent(), false);
+
+        // メールアドレスを表示
+        UserMailAddress userMailAddress = new UserMailAddress(requireActivity());
+        TextView textMailAddress = view.findViewById(R.id.mail_address);
+        textMailAddress.setText(userMailAddress.getUserMailAddress());
     }
 }

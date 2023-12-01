@@ -223,15 +223,16 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/log"
+        android:id="@+id/logout"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:paddingLeft="20dp"
         android:layout_marginTop="50dp"
-        android:background="#FFFF00"
-        android:text="@string/log"
+        android:background="@color/white"
+        android:text="@string/logout"
         android:textSize="18sp"
-        android:gravity="center_vertical"
+        android:textColor="@color/red"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info"/>
