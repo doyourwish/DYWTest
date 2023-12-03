@@ -13,4 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-config.py
+
+#user settings
+/app/src/main/assets/tokens
+/python/config.py
