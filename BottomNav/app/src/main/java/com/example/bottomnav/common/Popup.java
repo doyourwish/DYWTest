@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.bottomnav.start.LoginActivity;
+
 //TODO:クラス構造検討
 //ポップアップ参考:https://qiita.com/ohwada/items/f95518b6948b271433a3
 
@@ -98,6 +100,31 @@ public class Popup {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         Intent intent = new Intent(activity.getApplication(), cls);
+                        activity.startActivity(intent);
+                        activity.finish();
+                    }
+                })
+                .create();
+
+        alertDialog.show();
+        return true;
+    }
+
+    public boolean showPopupWithActivityLogin(String title, String message){
+        if(activity == null){
+            Log.e("Popup.showPopupWithActivityLogin","activity is null");
+            return false;
+        }
+        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(activity.getApplication(), LoginActivity.class);
+                        //積み重ねたAcvitityを全削除
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         activity.startActivity(intent);
                         activity.finish();
                     }

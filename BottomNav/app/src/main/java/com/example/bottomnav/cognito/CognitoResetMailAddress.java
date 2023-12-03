@@ -1,6 +1,7 @@
 package com.example.bottomnav.cognito;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
@@ -11,6 +12,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHa
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
+import com.example.bottomnav.start.LoginActivity;
 
 import java.util.List;
 
@@ -68,9 +70,11 @@ public class CognitoResetMailAddress
             @Override
             public void onSuccess() {
                 // メールアドレス再設定が成功した場合の処理
+                // ログイン情報更新のため、暫定的にログイン画面に遷移
+                // TODO:自動ログイン実装
                 // TODO:DB登録
-                userMailAddress.saveUserMailAddress(newMailAddress);
-                popup.showPopupWithActivityFinish("Success", "Set NewMailAddress was success");
+                userMailAddress.saveUserMailAddress(null);
+                popup.showPopupWithActivityLogin("Success", "Set NewMailAddress was success");
             }
 
             @Override

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.IntentCompat;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.common.Popup;
@@ -45,18 +46,18 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
         send_button.setOnClickListener(v -> {
             //メールアドレス再設定画面に遷移
             //他のcognitoの処理に合わせて、遷移先の画面でメール送信
-            Intent intent = new Intent(getApplication(), ResetMailAddressActivity.class);
             if(oldMailAddress == null){
                 popup.showPopup("Error","再ログインをしてください");
             }
             else {
                 EditText newMailAddressText = findViewById(R.id.new_email_edit);
                 String newMailAddress = newMailAddressText.getText().toString();
+                Intent intent = new Intent(getApplication(), ResetMailAddressActivity.class);
                 intent.putExtra(getString(R.string.user_new_mail_address_key),newMailAddress);
+                startActivity(intent);
+                //メールアドレス再設定メール送信画面を閉じる
+                finish();
             }
-            startActivity(intent);
-            //メールアドレス再設定メール送信画面を閉じる
-            finish();
         });
 
         //戻るボタン
