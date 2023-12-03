@@ -37,7 +37,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/account_status_text"
+        android:id="@+id/account_status"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:layout_marginTop="80dp"
@@ -50,9 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:background="@drawable/shape_style"
-        android:clickable="true"
-        android:onClick="onTextViewClick"/>
+        android:background="@drawable/shape_style"/>
 
     <ImageButton
         android:id="@+id/account_status_button"
@@ -66,12 +64,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/account_status_text"
+        app:layout_constraintTop_toTopOf="@+id/account_status"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
     <TextView
-        android:id="@+id/mail_text"
+        android:id="@+id/mail"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
@@ -82,13 +80,11 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_status_text"
-        android:background="@drawable/shape_style"
-        android:clickable="true"
-        android:onClick="onTextViewClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/account_status"
+        android:background="@drawable/shape_style"/>
 
     <TextView
-        android:id="@+id/mail_address_text"
+        android:id="@+id/mail_address"
         android:layout_width="140dp"
         android:layout_height="80dp"
         android:layout_marginRight="40dp"
@@ -97,10 +93,8 @@
         android:text="@string/setting_mail_address"
         android:textSize="15sp"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/password_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:clickable="true"
-        android:onClick="onTextViewClick"/>
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/mail_button"
@@ -114,11 +108,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mail_text"
+        app:layout_constraintTop_toTopOf="@+id/mail"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/password_text"
+        android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:paddingLeft="20dp"
@@ -129,10 +123,8 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mail_text"
-        android:background="@drawable/shape_style"
-        android:clickable="true"
-        android:onClick="onTextViewClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/mail"
+        android:background="@drawable/shape_style"/>
 
     <ImageButton
         android:id="@+id/password_button"
@@ -146,11 +138,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/password_text"
+        app:layout_constraintTop_toTopOf="@+id/password"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/delete_text"
+        android:id="@+id/delete"
         android:background="#FFFFFF"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
@@ -163,9 +155,7 @@
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_text"
-        android:clickable="true"
-        android:onClick="onTextViewClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/password"/>
 
     <ImageButton
         android:id="@+id/delete_button"
@@ -179,7 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/delete_text"
+        app:layout_constraintTop_toTopOf="@+id/delete"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 

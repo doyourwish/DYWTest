@@ -19,7 +19,7 @@
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/ZOZO_text"/>
+        app:layout_constraintBottom_toTopOf="@+id/ZOZO"/>
 
     <ImageButton
         android:id="@+id/return_button"
@@ -38,7 +38,7 @@
 
 
     <TextView
-        android:id="@+id/ZOZO_text"
+        android:id="@+id/ZOZO"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:gravity="center_vertical"
@@ -52,9 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        android:clickable="true"
-        android:onClick="onTextViewClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <ImageButton
         android:id="@+id/ZOZO_button"
@@ -68,27 +66,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ZOZO_text"
+        app:layout_constraintTop_toTopOf="@+id/ZOZO"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/ZOZO_status"
         android:layout_width="160dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
         android:background="#FFFFFF"
-        android:clickable="true"
         android:gravity="center_vertical"
-        android:onClick="onTextViewClick"
+        android:layout_marginTop="20dp"
         android:text="@string/setting_ZOZO_status"
-        android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/return_button"
-        app:layout_constraintTop_toTopOf="@+id/ZOZO_text"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="@+id/ZOZO"
+        app:layout_constraintEnd_toStartOf="@+id/return_button" />
 
     <TextView
-        android:id="@+id/UNIQLO_text"
+        android:id="@+id/UNIQLO"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:background="@drawable/shape_style"
@@ -101,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ZOZO_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/ZOZO"/>
 
     <ImageButton
         android:id="@+id/UNIQLO_button"
@@ -115,23 +110,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/UNIQLO_text"
+        app:layout_constraintTop_toTopOf="@+id/UNIQLO"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/UNIQLO_status"
         android:layout_width="160dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
         android:background="#FFFFFF"
-        android:clickable="true"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
-        android:onClick="onTextViewClick"
         android:text="@string/setting_ZOZO_status"
-        android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/return_button"
-        app:layout_constraintTop_toTopOf="@+id/UNIQLO_text"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="@+id/UNIQLO"
+        app:layout_constraintEnd_toStartOf="@+id/return_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

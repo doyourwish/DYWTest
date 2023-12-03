@@ -23,7 +23,7 @@ public class SettingAccountFragment extends FragmentHandler {
 
         // メールアドレスを表示
         UserMailAddress userMailAddress = new UserMailAddress(requireActivity());
-        TextView textMailAddress = view.findViewById(R.id.mail_address_text);
+        TextView textMailAddress = view.findViewById(R.id.mail_address);
         textMailAddress.setText(userMailAddress.getUserMailAddress());
 
         // 戻るボタン
