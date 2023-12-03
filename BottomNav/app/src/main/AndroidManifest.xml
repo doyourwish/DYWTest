@@ -53,6 +53,12 @@
             android:exported="false" >
         </activity>
         <activity
+            android:name=".setting.account.SendMailForResetMailAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".setting.account.ResetMailAddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".setting.account.SendMailForResetPasswordActivity"
             android:exported="false" />
         <activity

@@ -66,7 +66,7 @@
     <string name="connection">外部サイト連携</string>
     <string name="support">サポート</string>
     <string name="info">本アプリについて</string>
-    <string name="log">ログイン or ログアウト表示エリア</string>
+    <string name="logout">ログアウト</string>
     <string name="ver">Ver表示</string>
 
     <!-- 設定_アカウント画面   -->
@@ -152,7 +152,7 @@
     <string name="mail_address_box">メールアドレス</string>
     <string name="send_button">送信</string>
     <string name="return_button">戻る</string>
-    <string name="reset_password_description">表示されたメールアドレスにメールが届きます。\n届いたメールに記載されたパスコードを本アプリに入力し、パスワードを再設定してください。</string>
+    <string name="reset_password_description">上記のメールアドレスにメールが届きます。\n届いたメールに記載されたパスコードを本アプリに入力し、パスワードを再設定してください。</string>
     <string name="reset_password_concern_text">パスワード再設定でお困りの場合は</string>
     <string name="reset_password_concern_click">こちら</string>
     <string name="user_mail_address_key">USER_EMAIL_ADDRESS</string>
@@ -166,13 +166,22 @@
     <string name="cancel_button">キャンセル</string>
     <string name="reset_password_after_mail_send_description">メールを送信しました。\n届いたメールに記載されたパスコードを本アプリに入力し、パスワードを再設定してください。</string>
 
+    <!-- メールアドレス再設定メール送信画面   -->
+    <string name="reset_mail_address_title">メールアドレスの再設定</string>
+    <string name="old_mail_address_description">現在のメールアドレス</string>
+    <string name="reset_mail_address_description">新しいメールアドレスにメールが届きます。\n届いたメールに記載されたパスコードを本アプリに入力し、メールアドレスを再設定してください。</string>
+    <string name="reset_mail_address_concern_text">メールアドレス再設定でお困りの場合は</string>
+    <string name="reset_mail_address_concern_click">こちら</string>
+    <string name="user_new_mail_address_key">USER_NEW_EMAIL_ADDRESS</string>
+
+    <!-- メールアドレス再設定画面   -->
+    <string name="new_mail_address_description">新しいメールアドレス</string>
+    <string name="reset_mail_address_after_mail_send_description">メールを送信しました。\n届いたメールに記載されたパスコードを本アプリに入力し、メールアドレスを再設定してください。</string>
+
     <!-- カレンダー画面   -->
     <string name="tv_winfo_title">お天気詳細</string>
 
     <!-- お知らせ画面   -->
     <string name="notification_title">お知らせ</string>
-
-
-
 
 </resources>
