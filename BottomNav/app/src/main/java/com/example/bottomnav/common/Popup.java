@@ -1,11 +1,13 @@
 package com.example.bottomnav.common;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 
+import com.example.bottomnav.R;
 import com.example.bottomnav.start.LoginActivity;
 
 //TODO:クラス構造検討
@@ -24,7 +26,7 @@ public class Popup {
             Log.e("Popup.showPopup","activity is null");
             return false;
         }
-        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+        AlertDialog alertDialog = new AlertDialog.Builder(activity, R.style.AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -33,6 +35,7 @@ public class Popup {
                         dialog.dismiss();
                     }
                 })
+                .setCancelable(false)
                 .create();
 
         alertDialog.show();
@@ -44,7 +47,7 @@ public class Popup {
             Log.e("Popup.showPopupWithActivityFinish","activity is null");
             return false;
         }
-        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+        AlertDialog alertDialog = new AlertDialog.Builder(activity, R.style.AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -54,6 +57,7 @@ public class Popup {
                         activity.finish();
                     }
                 })
+                .setCancelable(false)
                 .create();
 
         alertDialog.show();
@@ -65,7 +69,7 @@ public class Popup {
             Log.e("Popup.showPopupTwoButtonWithActivityFinish","activity is null");
             return false;
         }
-        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+        AlertDialog alertDialog = new AlertDialog.Builder(activity, R.style.AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -81,6 +85,7 @@ public class Popup {
                         dialog.dismiss();
                     }
                 })
+                .setCancelable(false)
                 .create();
 
         alertDialog.show();
@@ -92,7 +97,7 @@ public class Popup {
             Log.e("Popup.showPopupWithActivityChange","activity is null");
             return false;
         }
-        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+        AlertDialog alertDialog = new AlertDialog.Builder(activity, R.style.AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -104,6 +109,7 @@ public class Popup {
                         activity.finish();
                     }
                 })
+                .setCancelable(false)
                 .create();
 
         alertDialog.show();
@@ -115,7 +121,7 @@ public class Popup {
             Log.e("Popup.showPopupWithActivityLogin","activity is null");
             return false;
         }
-        android.app.AlertDialog alertDialog = new AlertDialog.Builder(activity)
+        AlertDialog alertDialog = new AlertDialog.Builder(activity, R.style.AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -129,6 +135,7 @@ public class Popup {
                         activity.finish();
                     }
                 })
+                .setCancelable(false)
                 .create();
 
         alertDialog.show();

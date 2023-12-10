@@ -6,12 +6,25 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
 
-        <!-- Secondary brand color. -->
-<!--        <item name="colorSecondary">@color/teal_200</item>-->
-<!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
-
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
+
+    <!--  AlertDialogStyle  -->
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <!-- buttons -->
+        <item name="buttonBarPositiveButtonStyle">@style/DayNightAlertDialog.PositiveButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DayNightAlertDialog.NegativeButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/DayNightAlertDialog.NeutralButton</item>
+    </style>
+    <style name="DayNightAlertDialog.PositiveButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/deep_pink</item>
+    </style>
+    <style name="DayNightAlertDialog.NegativeButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/deep_pink</item>
+    </style>
+    <style name="DayNightAlertDialog.NeutralButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/deep_pink</item>
+    </style>
+
 </resources>
