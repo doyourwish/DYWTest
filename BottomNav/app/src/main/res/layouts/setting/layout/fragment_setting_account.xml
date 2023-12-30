@@ -158,7 +158,7 @@
         app:layout_constraintTop_toBottomOf="@+id/password"/>
 
     <ImageButton
-        android:id="@+id/delete_button"
+        android:id="@+id/delete_user_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="50dp"

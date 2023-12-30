@@ -73,6 +73,9 @@
         <activity
             android:name=".start.ConfirmRegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".setting.account.DeleteUserActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
