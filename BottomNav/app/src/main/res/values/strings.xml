@@ -184,4 +184,14 @@
     <!-- お知らせ画面   -->
     <string name="notification_title">お知らせ</string>
 
+    <!-- 退会画面   -->
+    <string name="delete_user_title">退会</string>
+    <string name="delete_user_description">
+        ・上記のメールアドレスに紐づくアカウントが退会の対象となります\n
+        ・退会した場合、保存されているデータは全て削除されます\n
+        ・再登録しても、過去のデータは引き継ぐことはできません
+    </string>
+    <string name="delete_user_agree">同意の上、退会手続きをする</string>
+    <string name="delete_user_button">退会する</string>
+
 </resources>

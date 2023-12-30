@@ -12,6 +12,7 @@ import com.example.bottomnav.R;
 import com.example.bottomnav.common.FragmentHandler;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.home.MainActivity;
+import com.example.bottomnav.setting.account.DeleteUserActivity;
 import com.example.bottomnav.setting.account.SendMailForResetMailAddressActivity;
 import com.example.bottomnav.setting.account.SendMailForResetPasswordActivity;
 
@@ -54,6 +55,17 @@ public class SettingAccountFragment extends FragmentHandler {
             public void onClick(View v) {
                 MainActivity main_activity = (MainActivity) getActivity();
                 Intent intent = new Intent(main_activity, SendMailForResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //退会ボタン
+        ImageButton delete_user_button = view.findViewById(R.id.delete_user_button);
+        delete_user_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity main_activity = (MainActivity) getActivity();
+                Intent intent = new Intent(main_activity, DeleteUserActivity.class);
                 startActivity(intent);
             }
         });
