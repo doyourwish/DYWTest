@@ -72,7 +72,6 @@
     <!-- 設定_アカウント画面   -->
     <string name="setting_account">アカウント</string>
     <string name="setting_account_register">アカウント登録</string>
-    <string name="setting_account_status">登録済み or 未登録</string>
     <string name="setting_mail_address_reset">メールアドレス再設定</string>
     <string name="setting_mail_address">メールアドレス取得</string>
     <string name="setting_password_reset">パスワード再設定</string>
