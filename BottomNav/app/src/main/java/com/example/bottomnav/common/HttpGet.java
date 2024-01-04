@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyAsyncTask extends AsyncTask<Void, Void, String> {
+public class HttpGet extends AsyncTask<Void, Void, String> {
     private Map<String, String> headers;
+    private String endpoint;
 
-    public MyAsyncTask() {
+    public HttpGet(String endpoint) {
+        this.endpoint = endpoint;
         headers = new HashMap<>();
         headers.put("X-Example-Header", "Example-Value");
     }
@@ -20,7 +22,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, String> {
         String resultStr = null;
         try {
             HttpClient httpClient = new HttpClient();
-            resultStr = httpClient.get("https://httpbin.org/get", "UTF-8", headers);
+            resultStr = httpClient.get(endpoint, "UTF-8", headers);
         } catch (IOException e) {
             e.printStackTrace(); // エラーログを出力することができます
         }
