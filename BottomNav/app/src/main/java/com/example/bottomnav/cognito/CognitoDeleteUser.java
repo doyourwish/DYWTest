@@ -1,22 +1,11 @@
 package com.example.bottomnav.cognito;
 
 import android.app.Activity;
-import android.util.Log;
 
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.example.bottomnav.common.Popup;
-import com.example.bottomnav.common.UserMailAddress;
-import com.example.bottomnav.home.MainActivity;
-import com.example.bottomnav.start.GenderAgeActivity;
 import com.example.bottomnav.start.RegisterActivity;
 
 public class CognitoDeleteUser {
