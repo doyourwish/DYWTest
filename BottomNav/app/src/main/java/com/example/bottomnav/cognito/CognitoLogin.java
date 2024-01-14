@@ -107,6 +107,50 @@ public class CognitoLogin {
         return true;
     }
 
+    public boolean checkLoginForResetMailAddress(String username) {
+
+        // CognitoUserオブジェクトを作成
+        CognitoUser user = userPool.getUser(username);
+
+        // ユーザープールにログインリクエストを送信
+        user.getSessionInBackground(new AuthenticationHandler() {
+            @Override
+            public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+
+            }
+
+            @Override
+            public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
+                // ユーザー名とパスワードを提供
+                // 一度ログインが成功すると、セッションが持続する限りこの関数は呼ばれない
+                // セッションが切れた時にこの関数を通った場合、あえてログインを失敗させる
+                AuthenticationDetails authenticationDetails = new AuthenticationDetails(username, "dummy", null);
+                authenticationContinuation.setAuthenticationDetails(authenticationDetails);
+                authenticationContinuation.continueTask();
+            }
+
+            @Override
+            public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
+                // MFAが設定されている場合の処理
+                // この例ではMFAを考慮しないため、何もしない
+            }
+
+            @Override
+            public void authenticationChallenge(ChallengeContinuation continuation) {
+                // 認証に関連するチャレンジがある場合の処理
+                // この例では何もしない
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                //ログイン画面に遷移
+                popup.showPopupWithActivityLogin("再ログイン","メールアドレス再設定の前に再ログインをしてください");
+            }
+        });
+
+        return true;
+    }
+
     public boolean signOut(String username) {
 
         // CognitoUserオブジェクトを作成

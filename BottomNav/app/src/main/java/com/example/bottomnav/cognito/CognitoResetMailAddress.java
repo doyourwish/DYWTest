@@ -1,7 +1,6 @@
 package com.example.bottomnav.cognito;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
@@ -12,7 +11,6 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHa
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
-import com.example.bottomnav.start.LoginActivity;
 
 import java.util.List;
 
@@ -56,7 +54,7 @@ public class CognitoResetMailAddress
             @Override
             public void onFailure(Exception exception) {
                 // 失敗時の処理
-                popup.showPopupWithActivityFinish("Error", "Set NewMailAddress was failed: " + exception.getMessage());
+                popup.showPopupWithActivityFinish("Error", "Send for setting NewMailAddress was failed: " + exception.getMessage());
             }
         });
 

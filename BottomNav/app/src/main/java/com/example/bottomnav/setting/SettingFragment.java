@@ -13,8 +13,6 @@ import com.example.bottomnav.common.FragmentHandler;
 import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.home.HomeFragment;
-import com.example.bottomnav.home.MainActivity;
-import com.example.bottomnav.setting.account.SendMailForResetMailAddressActivity;
 import com.example.bottomnav.start.LoginActivity;
 
 

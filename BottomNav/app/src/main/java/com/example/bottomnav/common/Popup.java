@@ -1,17 +1,16 @@
 package com.example.bottomnav.common;
 
 import android.app.Activity;
-import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoDeleteUser;
-import com.example.bottomnav.setting.account.DeleteUserActivity;
+import com.example.bottomnav.cognito.CognitoLogin;
 import com.example.bottomnav.start.LoginActivity;
-import com.example.bottomnav.start.RegisterActivity;
 
 //TODO:クラス構造検討
 //ポップアップ参考:https://qiita.com/ohwada/items/f95518b6948b271433a3
@@ -130,6 +129,11 @@ public class Popup {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //サインアウト
+                        CognitoLogin cognitoLogin = new CognitoLogin(activity);
+                        UserMailAddress userMailAddress = new UserMailAddress(activity);
+                        cognitoLogin.signOut(userMailAddress.getUserMailAddress());
+
                         dialog.dismiss();
                         Intent intent = new Intent(activity.getApplication(), LoginActivity.class);
                         //積み重ねたAcvitityを全削除
