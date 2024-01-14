@@ -9,9 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.IntentCompat;
 
 import com.example.bottomnav.R;
+import com.example.bottomnav.cognito.CognitoLogin;
 import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
 
@@ -29,6 +29,11 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
         Popup popup = new Popup(SendMailForResetMailAddressActivity.this);
         UserMailAddress userMailAddress = new UserMailAddress(SendMailForResetMailAddressActivity.this);
         String oldMailAddress = userMailAddress.getUserMailAddress();
+
+        //ログイン確認
+        //cognitoのセッションが切れた場合は、ログイン画面に遷移
+        CognitoLogin cognitoLogin = new CognitoLogin(SendMailForResetMailAddressActivity.this);
+        cognitoLogin.checkLoginForResetMailAddress(oldMailAddress);
 
         //メールアドレス表示
         TextView loginEmailTextView = findViewById(R.id.login_email_text);
