@@ -35,8 +35,8 @@ public class ResetMailAddressActivity extends AppCompatActivity {
         String newMailAddress = intent.getStringExtra(getString(R.string.user_new_mail_address_key));
 
         //パスコード送信
-        CognitoResetMailAddress cognitoResetMailAddress = new CognitoResetMailAddress();
-        cognitoResetMailAddress.sendSetMailAddressCode(newMailAddress,ResetMailAddressActivity.this);
+        CognitoResetMailAddress cognitoResetMailAddress = new CognitoResetMailAddress(ResetMailAddressActivity.this);
+        cognitoResetMailAddress.sendSetMailAddressCode(newMailAddress);
 
         //変更押下
         EditText text_passcode = findViewById(R.id.passcode_box);

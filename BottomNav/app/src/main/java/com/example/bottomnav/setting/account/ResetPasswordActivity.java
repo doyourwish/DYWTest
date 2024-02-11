@@ -30,8 +30,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         String mailAddress = intent.getStringExtra(getString(R.string.user_mail_address_key));
 
         //パスコード送信
-        CognitoResetPassword cognitoResetPassword = new CognitoResetPassword();
-        cognitoResetPassword.sendForgotPasswordCode(mailAddress,ResetPasswordActivity.this);
+        CognitoResetPassword cognitoResetPassword = new CognitoResetPassword(ResetPasswordActivity.this);
+        cognitoResetPassword.sendForgotPasswordCode(mailAddress);
 
         //変更押下
         EditText text_new_password_1 = findViewById(R.id.new_password_1);

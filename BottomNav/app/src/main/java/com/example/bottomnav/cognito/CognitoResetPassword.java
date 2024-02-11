@@ -3,7 +3,6 @@ package com.example.bottomnav.cognito;
 import android.app.Activity;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.example.bottomnav.popup.ActivityFinish;
@@ -12,31 +11,16 @@ import com.example.bottomnav.popup.Popup;
 
 import java.util.Objects;
 
-public class CognitoResetPassword
-{
+public class CognitoResetPassword extends CognitoManager{
     private ForgotPasswordContinuation forgotPasswordContinuation;
 
-    final private CognitoConfigure cognitoConfigure = new CognitoConfigure();
+    public CognitoResetPassword(Activity activity) {
+        super(activity);
+    }
 
-    //現状sendForgotPasswordCodeしかuserPool変数は使われてないが、
-    //拡張性を考えてCognitoクラスを作成し、
-    //その子クラスとしてCognitoResetPasswordクラスを生成する想定でコードを記述した
-    //エラーコードも仕込む予定
-    private CognitoUserPool userPool;
+    public boolean sendForgotPasswordCode(String username) {
 
-    private Activity activity;
-
-    //TODO:メッセージの管理方法、エラーコード設定検討
-    public boolean sendForgotPasswordCode(String username, Activity activity) {
-
-        this.activity = activity;
-
-        // ユーザープールの初期化
-        userPool = new CognitoUserPool(activity.getApplicationContext(),
-                cognitoConfigure.userPoolId, cognitoConfigure.clientId,
-                cognitoConfigure.clientSecret, cognitoConfigure.cognitoRegion);
-
-        CognitoUser cognitoUser = userPool.getUser(username);
+        CognitoUser cognitoUser = cognitoUserPool.getUser(username);
 
         cognitoUser.forgotPasswordInBackground(new ForgotPasswordHandler() {
             @Override

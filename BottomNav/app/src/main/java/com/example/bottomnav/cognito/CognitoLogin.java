@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
@@ -21,27 +20,16 @@ import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.start.GenderAgeActivity;
 import com.example.bottomnav.start.LoginActivity;
 
-public class CognitoLogin {
-
-    final private CognitoConfigure cognitoConfigure = new CognitoConfigure();
-
-    private CognitoUserPool userPool;
-
-    private Activity activity;
+public class CognitoLogin extends CognitoManager{
 
     public CognitoLogin(Activity activity){
-        this.activity = activity;
-
-        // Cognitoユーザープールの作成
-        userPool = new CognitoUserPool(activity.getApplicationContext(),
-                cognitoConfigure.userPoolId, cognitoConfigure.clientId,
-                cognitoConfigure.clientSecret, cognitoConfigure.cognitoRegion);
+        super(activity);
     }
 
     public boolean login(String username,String password) {
 
         // CognitoUserオブジェクトを作成
-        CognitoUser user = userPool.getUser(username);
+        CognitoUser user = cognitoUserPool.getUser(username);
 
         // ユーザープールにログインリクエストを送信
         user.getSessionInBackground(new AuthenticationHandler() {
@@ -116,10 +104,10 @@ public class CognitoLogin {
         return true;
     }
 
-    public boolean checkLoginForResetMailAddress(String username) {
+    public boolean checkLogin(String username) {
 
         // CognitoUserオブジェクトを作成
-        CognitoUser user = userPool.getUser(username);
+        CognitoUser user = cognitoUserPool.getUser(username);
 
         // ユーザープールにログインリクエストを送信
         user.getSessionInBackground(new AuthenticationHandler() {
@@ -167,7 +155,7 @@ public class CognitoLogin {
     public boolean signOut(String username) {
 
         // CognitoUserオブジェクトを作成
-        CognitoUser user = userPool.getUser(username);
+        CognitoUser user = cognitoUserPool.getUser(username);
 
         // 一度ログインが成功すると、セッションが持続する限りgetAuthenticationDetailsは呼ばれない
         // その場合、入力されたパスワードが反映されない

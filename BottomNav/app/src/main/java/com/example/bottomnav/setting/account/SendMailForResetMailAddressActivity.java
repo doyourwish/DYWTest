@@ -33,7 +33,7 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
         //ログイン確認
         //cognitoのセッションが切れた場合は、ログイン画面に遷移
         CognitoLogin cognitoLogin = new CognitoLogin(SendMailForResetMailAddressActivity.this);
-        cognitoLogin.checkLoginForResetMailAddress(oldMailAddress);
+        cognitoLogin.checkLogin(oldMailAddress);
 
         //メールアドレス表示
         TextView loginEmailTextView = findViewById(R.id.login_email_text);
