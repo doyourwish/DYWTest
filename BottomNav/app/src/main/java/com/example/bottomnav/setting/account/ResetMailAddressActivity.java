@@ -11,7 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoResetMailAddress;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.KindsButton;
+import com.example.bottomnav.popup.Popup;
+
+import java.util.ArrayList;
 
 public class ResetMailAddressActivity extends AppCompatActivity {
 
@@ -24,8 +29,6 @@ public class ResetMailAddressActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        Popup popup = new Popup(ResetMailAddressActivity.this);
 
         //メールアドレス取得
         Intent intent = getIntent();
@@ -51,7 +54,15 @@ public class ResetMailAddressActivity extends AppCompatActivity {
         cancel_button.setOnClickListener(v -> {
             //遷移元のホーム画面に遷移
             //メールアドレス再設定画面を閉じる
-            popup.showPopupTwoButtonWithActivityFinish("キャンセル確認","メールアドレスの再設定をやめますか？");
+            ButtonInfo positiveButtonInfo = new ButtonInfo();
+            positiveButtonInfo.popupFunctions.add(new ActivityFinish(ResetMailAddressActivity.this));
+            ButtonInfo negativeButtonInfo = new ButtonInfo();
+            negativeButtonInfo.kindsButton = KindsButton.negative;
+            ArrayList<ButtonInfo> multiButtonInfo = new ArrayList<>();
+            multiButtonInfo.add(positiveButtonInfo);
+            multiButtonInfo.add(negativeButtonInfo);
+            Popup popup = new Popup(ResetMailAddressActivity.this, multiButtonInfo);
+            popup.createPopup("キャンセル確認","メールアドレスの再設定をやめますか？");
         });
 
         //こちら押下

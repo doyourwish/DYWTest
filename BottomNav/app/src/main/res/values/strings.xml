@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">BottomNav</string>
 
+    <!-- ポップアップ -->
+    <string name="popup_button_positive">OK</string>
+    <string name="popup_button_negative">NG</string>
+    <string name="popup_button_neutral">Cancel</string>
+
     <!-- 新規登録画面   -->
     <string name="register_title">新規会員登録</string>
     <string name="register_mail_address">メールアドレスを入力してください</string>

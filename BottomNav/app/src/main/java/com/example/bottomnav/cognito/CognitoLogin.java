@@ -12,10 +12,14 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Auth
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
-import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.home.MainActivity;
+import com.example.bottomnav.popup.ActivityChange;
+import com.example.bottomnav.popup.AppSignOut;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.start.GenderAgeActivity;
+import com.example.bottomnav.start.LoginActivity;
 
 public class CognitoLogin {
 
@@ -25,12 +29,9 @@ public class CognitoLogin {
 
     private Activity activity;
 
-    private Popup popup;
-
     public CognitoLogin(Activity activity){
         this.activity = activity;
-        // ポップアップ用クラスのインスタンス生成
-        popup = new Popup(this.activity);
+
         // Cognitoユーザープールの作成
         userPool = new CognitoUserPool(activity.getApplicationContext(),
                 cognitoConfigure.userPoolId, cognitoConfigure.clientId,
@@ -66,10 +67,16 @@ public class CognitoLogin {
                 // TODO:DB取得実装
                 boolean isRegisterUserInfo = false; //search user email from DB
                 if(isRegisterUserInfo){
-                    popup.showPopupWithActivityChange("Success", "Login was successful.", MainActivity.class);
+                    ButtonInfo buttonInfo = new ButtonInfo();
+                    buttonInfo.popupFunctions.add(new ActivityChange(activity, MainActivity.class));
+                    Popup popup = new Popup(activity, buttonInfo);
+                    popup.createPopup("Success", "Login was successful.");
                 }
                 else{
-                    popup.showPopupWithActivityChange("Success", "Login was successful.", GenderAgeActivity.class);
+                    ButtonInfo buttonInfo = new ButtonInfo();
+                    buttonInfo.popupFunctions.add(new ActivityChange(activity, GenderAgeActivity.class));
+                    Popup popup = new Popup(activity, buttonInfo);
+                    popup.createPopup("Success", "Login was successful.");
                 }
             }
 
@@ -100,7 +107,9 @@ public class CognitoLogin {
                 // ログイン失敗時の処理
                 Log.e("login", "ログイン失敗: " + exception.getMessage());
                 // ログイン失敗時のポップアップ表示
-                popup.showPopup("Error", "Login was failed: " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Error", "Login was failed: " + exception.getMessage());
             }
         });
 
@@ -144,7 +153,11 @@ public class CognitoLogin {
             @Override
             public void onFailure(Exception exception) {
                 //ログイン画面に遷移
-                popup.showPopupWithActivityLogin("再ログイン","メールアドレス再設定の前に再ログインをしてください");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new AppSignOut(activity));
+                buttonInfo.popupFunctions.add(new ActivityChange(activity, LoginActivity.class, true));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("再ログイン","メールアドレス再設定の前に再ログインをしてください");
             }
         });
 

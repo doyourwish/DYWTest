@@ -11,7 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoResetPassword;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.KindsButton;
+import com.example.bottomnav.popup.Popup;
+
+import java.util.ArrayList;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -19,8 +24,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
-
-        Popup popup = new Popup(ResetPasswordActivity.this);
 
         //メールアドレス取得
         Intent intent = getIntent();
@@ -42,7 +45,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
             //パスワード確認
             if(!new_password_1.equals(new_password_2)){
-                popup.showPopup("パスワード再設定", "「新しいパスワード」と「確認用パスワード」が一致しません");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(ResetPasswordActivity.this, buttonInfo);
+                popup.createPopup("パスワード再設定", "「新しいパスワード」と「確認用パスワード」が一致しません");
                 return;
             }
 
@@ -56,7 +61,15 @@ public class ResetPasswordActivity extends AppCompatActivity {
         cancel_button.setOnClickListener(v -> {
             //遷移元のホーム画面、ログイン画面に遷移
             //パスワード再設定画面を閉じる
-            popup.showPopupTwoButtonWithActivityFinish("キャンセル確認","パスワードの再設定をやめますか？");
+            ButtonInfo positiveButtonInfo = new ButtonInfo();
+            positiveButtonInfo.popupFunctions.add(new ActivityFinish(ResetPasswordActivity.this));
+            ButtonInfo negativeButtonInfo = new ButtonInfo();
+            negativeButtonInfo.kindsButton = KindsButton.negative;
+            ArrayList<ButtonInfo> multiButtonInfo = new ArrayList<>();
+            multiButtonInfo.add(positiveButtonInfo);
+            multiButtonInfo.add(negativeButtonInfo);
+            Popup popup = new Popup(ResetPasswordActivity.this, multiButtonInfo);
+            popup.createPopup("キャンセル確認","パスワードの再設定をやめますか？");
         });
 
         //こちら押下
