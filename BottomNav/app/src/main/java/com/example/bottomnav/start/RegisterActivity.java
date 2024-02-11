@@ -10,7 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -18,8 +19,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        Popup popup = new Popup(RegisterActivity.this);
 
         //登録ボタン
         EditText text_mail_address_1 = findViewById(R.id.register_mail_address_box_1);
@@ -36,13 +35,17 @@ public class RegisterActivity extends AppCompatActivity {
 
             //メールアドレス確認
             if(!mail_address_1.equals(mail_address_2)){
-                popup.showPopup("新規会員登録", "「メールアドレス」と「確認用メールアドレス」が一致しません");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(RegisterActivity.this, buttonInfo);
+                popup.createPopup("新規会員登録", "「メールアドレス」と「確認用メールアドレス」が一致しません");
                 return;
             }
 
             //パスワード確認
             if(!password_1.equals(password_2)){
-                popup.showPopup("新規会員登録", "「パスワード」と「確認用パスワード」が一致しません");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(RegisterActivity.this, buttonInfo);
+                popup.createPopup("新規会員登録", "「パスワード」と「確認用パスワード」が一致しません");
                 return;
             }
 

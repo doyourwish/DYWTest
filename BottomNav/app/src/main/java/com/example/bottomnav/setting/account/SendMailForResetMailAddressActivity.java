@@ -12,8 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoLogin;
-import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
 
 public class SendMailForResetMailAddressActivity extends AppCompatActivity {
     @Override
@@ -26,7 +27,6 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-        Popup popup = new Popup(SendMailForResetMailAddressActivity.this);
         UserMailAddress userMailAddress = new UserMailAddress(SendMailForResetMailAddressActivity.this);
         String oldMailAddress = userMailAddress.getUserMailAddress();
 
@@ -52,7 +52,9 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
             //メールアドレス再設定画面に遷移
             //他のcognitoの処理に合わせて、遷移先の画面でメール送信
             if(oldMailAddress == null){
-                popup.showPopup("Error","再ログインをしてください");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(SendMailForResetMailAddressActivity.this, buttonInfo);
+                popup.createPopup("Error","再ログインをしてください");
             }
             else {
                 EditText newMailAddressText = findViewById(R.id.new_email_edit);

@@ -9,7 +9,10 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHa
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ActivityChange;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.start.GenderAgeActivity;
 
 public class CognitoSignUp
@@ -22,12 +25,9 @@ public class CognitoSignUp
 
     private Activity activity;
 
-    private Popup popup;
-
     public CognitoSignUp(Activity activity){
         this.activity = activity;
-        // ポップアップ用クラスのインスタンス生成
-        popup = new Popup(this.activity);
+
         // Cognitoユーザープールの作成
         userPool = new CognitoUserPool(activity.getApplicationContext(),
                 cognitoConfigure.userPoolId, cognitoConfigure.clientId,
@@ -50,7 +50,9 @@ public class CognitoSignUp
                 CodeDeliveryDetailsType codeDeliveryDetails = signUpResult.getCodeDeliveryDetails();
                 cognitoUser = user;
                 // SignUp 成功時のポップアップ表示
-                popup.showPopup("Success", "Send Code was Success. Check your email box");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Success", "Send Code was Success. Check your email box");
             }
 
             @Override
@@ -58,7 +60,10 @@ public class CognitoSignUp
                 // SignUp 失敗時の処理
                 // エラーメッセージの表示や適切な処理を行うことができます。
                 // SignUp 失敗時のポップアップ表示
-                popup.showPopupWithActivityFinish("Error", "Send Code failed: " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Error", "Send Code failed: " + exception.getMessage());
             }
         });
 
@@ -70,12 +75,17 @@ public class CognitoSignUp
         cognitoUser.confirmSignUpInBackground(confirmationCode, false, new GenericHandler() {
             @Override
             public void onSuccess() {
-                popup.showPopupWithActivityChange("Success", "Account confirmed. You can now sign in.", GenderAgeActivity.class);
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityChange(activity, GenderAgeActivity.class));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Success", "Account confirmed. You can now sign in.");
             }
 
             @Override
             public void onFailure(Exception exception) {
-                popup.showPopup("Error", "Confirmation failed: " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Error", "Confirmation failed: " + exception.getMessage());
             }
         });
 

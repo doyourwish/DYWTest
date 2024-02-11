@@ -9,8 +9,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
-import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.AppDeleteUser;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.KindsButton;
+import com.example.bottomnav.popup.Popup;
+
+import java.util.ArrayList;
 
 public class DeleteUserActivity extends AppCompatActivity {
 
@@ -19,14 +25,16 @@ public class DeleteUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_user);
 
-        Popup popup = new Popup(DeleteUserActivity.this);
         UserMailAddress userMailAddress = new UserMailAddress(DeleteUserActivity.this);
 
         //メールアドレス表示
         String mailAddress = userMailAddress.getUserMailAddress();
         if(mailAddress == null){
             Log.d("mail_address","mail_address is null because you didn't log in");
-            popup.showPopupWithActivityFinish("mail_address","mail_address is null because you didn't log in");
+            ButtonInfo buttonInfo = new ButtonInfo();
+            buttonInfo.popupFunctions.add(new ActivityFinish(DeleteUserActivity.this));
+            Popup popup = new Popup(DeleteUserActivity.this, buttonInfo);
+            popup.createPopup("退会","退会に同意する場合は、チェックボックスにチェックを入れてください");
         }
         else {
             TextView loginEmailTextView = findViewById(R.id.login_email_text);
@@ -40,10 +48,20 @@ public class DeleteUserActivity extends AppCompatActivity {
         Button delete_user_button = findViewById(R.id.delete_user_button);
         delete_user_button.setOnClickListener(v -> {
             if(checkBox.isChecked()){
-                popup.showTwoPopupWithDeleteUser("退会確認","本当に退会しますか？");
+                ButtonInfo positiveButtonInfo = new ButtonInfo();
+                positiveButtonInfo.popupFunctions.add(new AppDeleteUser(DeleteUserActivity.this));
+                ButtonInfo negativeButtonInfo = new ButtonInfo();
+                negativeButtonInfo.kindsButton = KindsButton.negative;
+                ArrayList<ButtonInfo> multiButtonInfo = new ArrayList<>();
+                multiButtonInfo.add(positiveButtonInfo);
+                multiButtonInfo.add(negativeButtonInfo);
+                Popup popup = new Popup(DeleteUserActivity.this, multiButtonInfo);
+                popup.createPopup("退会確認","本当に退会しますか？");
             }
             else{
-                popup.showPopup("退会","退会に同意する場合は、チェックボックスにチェックを入れてください");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(DeleteUserActivity.this, buttonInfo);
+                popup.createPopup("退会","退会に同意する場合は、チェックボックスにチェックを入れてください");
             }
         });
 

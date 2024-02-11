@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
-import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
 
 public class SendMailForResetPasswordActivity extends AppCompatActivity {
@@ -21,7 +20,6 @@ public class SendMailForResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_mail_for_reset_password);
 
-        Popup popup = new Popup(SendMailForResetPasswordActivity.this);
         UserMailAddress userMailAddress = new UserMailAddress(SendMailForResetPasswordActivity.this);
 
         //メールアドレス表示

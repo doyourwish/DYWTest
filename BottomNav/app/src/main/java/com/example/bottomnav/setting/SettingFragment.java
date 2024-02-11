@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.common.FragmentHandler;
-import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.home.HomeFragment;
 import com.example.bottomnav.start.LoginActivity;
@@ -20,7 +19,6 @@ public class SettingFragment extends FragmentHandler {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-        Popup popup = new Popup(getActivity());
 
         // 戻るボタン
         ImageButton return_button = view.findViewById(R.id.return_button);

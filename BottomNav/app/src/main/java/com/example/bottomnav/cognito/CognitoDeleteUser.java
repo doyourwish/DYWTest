@@ -5,7 +5,10 @@ import android.app.Activity;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ActivityChange;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.start.RegisterActivity;
 
 public class CognitoDeleteUser {
@@ -16,12 +19,9 @@ public class CognitoDeleteUser {
 
     private Activity activity;
 
-    private Popup popup;
-
     public CognitoDeleteUser(Activity activity){
         this.activity = activity;
-        // ポップアップ用クラスのインスタンス生成
-        popup = new Popup(this.activity);
+
         // Cognitoユーザープールの作成
         userPool = new CognitoUserPool(activity.getApplicationContext(),
                 cognitoConfigure.userPoolId, cognitoConfigure.clientId,
@@ -36,12 +36,18 @@ public class CognitoDeleteUser {
         user.deleteUserInBackground(new GenericHandler() {
             @Override
             public void onSuccess() {
-                popup.showPopupWithActivityChange("退会", "退会が完了しました", RegisterActivity.class);
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityChange(activity, RegisterActivity.class));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("退会", "退会が完了しました");
             }
 
             @Override
             public void onFailure(Exception exception) {
-                popup.showPopupWithActivityFinish("退会","退会処理に失敗しました : " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("退会","退会処理に失敗しました : " + exception.getMessage());
             }
         });
 

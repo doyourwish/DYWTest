@@ -11,8 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoSignUp;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.KindsButton;
+import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.setting.account.UserAccountQAActivity;
+
+import java.util.ArrayList;
 
 public class ConfirmRegisterActivity extends AppCompatActivity {
 
@@ -20,8 +25,6 @@ public class ConfirmRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_register);
-
-        Popup popup = new Popup(ConfirmRegisterActivity.this);
 
         //メールアドレス取得
         Intent intent = getIntent();
@@ -48,7 +51,15 @@ public class ConfirmRegisterActivity extends AppCompatActivity {
         return_button.setOnClickListener(v -> {
             //遷移元のホーム画面、ログイン画面に遷移
             //パスワード再設定画面を閉じる
-            popup.showPopupTwoButtonWithActivityFinish("キャンセル確認","会員登録を中止しますか？");
+            ButtonInfo positiveButtonInfo = new ButtonInfo();
+            positiveButtonInfo.popupFunctions.add(new ActivityFinish(ConfirmRegisterActivity.this));
+            ButtonInfo negativeButtonInfo = new ButtonInfo();
+            negativeButtonInfo.kindsButton = KindsButton.negative;
+            ArrayList<ButtonInfo> multiButtonInfo = new ArrayList<>();
+            multiButtonInfo.add(positiveButtonInfo);
+            multiButtonInfo.add(negativeButtonInfo);
+            Popup popup = new Popup(ConfirmRegisterActivity.this, multiButtonInfo);
+            popup.createPopup("キャンセル確認","会員登録を中止しますか？");
         });
 
         //こちら押下

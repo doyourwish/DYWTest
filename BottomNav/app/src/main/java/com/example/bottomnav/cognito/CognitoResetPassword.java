@@ -6,7 +6,9 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
-import com.example.bottomnav.common.Popup;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
 
 import java.util.Objects;
 
@@ -22,10 +24,12 @@ public class CognitoResetPassword
     //エラーコードも仕込む予定
     private CognitoUserPool userPool;
 
-    private Popup popup;
+    private Activity activity;
 
     //TODO:メッセージの管理方法、エラーコード設定検討
     public boolean sendForgotPasswordCode(String username, Activity activity) {
+
+        this.activity = activity;
 
         // ユーザープールの初期化
         userPool = new CognitoUserPool(activity.getApplicationContext(),
@@ -34,12 +38,14 @@ public class CognitoResetPassword
 
         CognitoUser cognitoUser = userPool.getUser(username);
 
-        popup = new Popup(activity);
         cognitoUser.forgotPasswordInBackground(new ForgotPasswordHandler() {
             @Override
             public void onSuccess() {
                 // パスワード再設定に成功した場合の処理
-                popup.showPopupWithActivityFinish("Success", "Set NewPassword was success");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Success", "Set NewPassword was success");
             }
 
             @Override
@@ -49,13 +55,18 @@ public class CognitoResetPassword
                 // ユーザープールに登録されてないアドレスでもこの関数は呼ばれてしまうが、
                 // 運用上ログインせずにパスワード再設定することはないと考え、例外処理はしない
                 forgotPasswordContinuation = continuation;
-                popup.showPopup("Success", "Send Code was Success. Check your email box");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Success", "Send Code was Success. Check your email box");
             }
 
             @Override
             public void onFailure(Exception exception) {
                 // パスワード再設定に失敗した場合の処理
-                popup.showPopupWithActivityFinish("Error", "Set NewPassword was failed: " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Error", "Set NewPassword was failed: " + exception.getMessage());
             }
         });
 
@@ -65,15 +76,20 @@ public class CognitoResetPassword
     public boolean setNewPassword(String passcode,String newPassword) {
 
         if(Objects.isNull(forgotPasswordContinuation)){
-            popup.showPopup("forgotPasswordContinuation is null", "No Send code: Please send code");
-            return false;
+            ButtonInfo buttonInfo = new ButtonInfo();
+            Popup popup = new Popup(activity, buttonInfo);
+            popup.createPopup("forgotPasswordContinuation is null", "No Send code: Please send code");
         }
         if (passcode.isEmpty()) {
-            popup.showPopup("Empty", "Passcode is empty");
+            ButtonInfo buttonInfo = new ButtonInfo();
+            Popup popup = new Popup(activity, buttonInfo);
+            popup.createPopup("Empty", "Passcode is empty");
             return false;
         }
         if (newPassword.isEmpty()) {
-            popup.showPopup("Empty", "New Password is empty");
+            ButtonInfo buttonInfo = new ButtonInfo();
+            Popup popup = new Popup(activity, buttonInfo);
+            popup.createPopup("Empty", "New Password is empty");
             return false;
         }
 
@@ -84,7 +100,9 @@ public class CognitoResetPassword
             // この処理でForgotPasswordHandlerのonSuccessやonFailureに移る
             forgotPasswordContinuation.continueTask();
         } catch(Exception e){
-            popup.showPopup("Error", "No Send code: " + e.getMessage());
+            ButtonInfo buttonInfo = new ButtonInfo();
+            Popup popup = new Popup(activity, buttonInfo);
+            popup.createPopup("Error", "No Send code: " + e.getMessage());
         }
 
         return true;

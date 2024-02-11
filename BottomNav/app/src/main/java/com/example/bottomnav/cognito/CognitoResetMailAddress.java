@@ -9,8 +9,13 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDel
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
-import com.example.bottomnav.common.Popup;
 import com.example.bottomnav.common.UserMailAddress;
+import com.example.bottomnav.popup.ActivityChange;
+import com.example.bottomnav.popup.ActivityFinish;
+import com.example.bottomnav.popup.AppSignOut;
+import com.example.bottomnav.popup.ButtonInfo;
+import com.example.bottomnav.popup.Popup;
+import com.example.bottomnav.start.LoginActivity;
 
 import java.util.List;
 
@@ -24,12 +29,12 @@ public class CognitoResetMailAddress
 
     private String newMailAddress;
 
-    private Popup popup;
+    private Activity activity;
 
     public boolean sendSetMailAddressCode(String newMailAddress, Activity activity) {
 
         // 各種初期化
-        popup = new Popup(activity);
+        this.activity = activity;
         CognitoUserPool userPool = new CognitoUserPool(activity.getApplicationContext(),
                 cognitoConfigure.userPoolId, cognitoConfigure.clientId,
                 cognitoConfigure.clientSecret, cognitoConfigure.cognitoRegion);
@@ -47,14 +52,19 @@ public class CognitoResetMailAddress
             @Override
             public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
                 // パスコード送信が成功した場合の処理
-                popup.showPopup("Success", "Send Code was Success. Check your email box");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Success", "Send Code was Success. Check your email box");
                 Log.d("sendSetMailAddressCode","send code : " + CognitoResetMailAddress.this.newMailAddress);
             }
 
             @Override
             public void onFailure(Exception exception) {
                 // 失敗時の処理
-                popup.showPopupWithActivityFinish("Error", "Send for setting NewMailAddress was failed: " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Error", "Send for setting NewMailAddress was failed: " + exception.getMessage());
             }
         });
 
@@ -72,13 +82,19 @@ public class CognitoResetMailAddress
                 // TODO:自動ログイン実装
                 // TODO:DB登録
                 userMailAddress.saveUserMailAddress(null);
-                popup.showPopupWithActivityLogin("Success", "Set NewMailAddress was success");
+                ButtonInfo buttonInfo = new ButtonInfo();
+                buttonInfo.popupFunctions.add(new AppSignOut(activity));
+                buttonInfo.popupFunctions.add(new ActivityChange(activity,LoginActivity.class,true));
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Success", "Set NewMailAddress was success");
             }
 
             @Override
             public void onFailure(Exception exception) {
                 // 失敗時の処理
-                popup.showPopup("Error", "Set NewMailAddress was failed: " + exception.getMessage());
+                ButtonInfo buttonInfo = new ButtonInfo();
+                Popup popup = new Popup(activity, buttonInfo);
+                popup.createPopup("Error", "Set NewMailAddress was failed: " + exception.getMessage());
             }
         });
 
