@@ -5,15 +5,32 @@
     <string name="popup_button_positive">OK</string>
     <string name="popup_button_negative">NG</string>
     <string name="popup_button_neutral">Cancel</string>
+    <string name="mail_address_re_input_title">メールアドレス再入力</string>
+    <string name="password_re_input_title">パスワード再入力</string>
+    <string name="passcode_re_input_title">パスコード再入力</string>
+    <string name="re_login_title">再ログイン</string>
+    <string name="re_login_message">再ログインをしてください</string>
+
+    <!-- 入力確認 -->
+    <string name="length_over">文字以上入力してください</string>
+    <string name="length_equal">文字入力してください</string>
+    <string name="literal_upper_english">大文字の英字を含めてください</string>
+    <string name="literal_lower_english">小文字の英字を含めてください</string>
+    <string name="literal_number">数字を含めてください</string>
+    <string name="literal_only_number">数字のみ入力してください</string>
+    <string name="literal_not_full_width">全角文字は使用できません</string>
+    <string name="literal_mail_address">有効なメールアドレスを入力してください</string>
 
     <!-- 新規登録画面   -->
     <string name="register_title">新規会員登録</string>
-    <string name="register_mail_address">メールアドレスを入力してください</string>
-    <string name="register_mail_address_box_1">メールアドレス</string>
-    <string name="register_mail_address_box_2">メールアドレス確認</string>
-    <string name="register_password">パスワードを入力してください</string>
-    <string name="register_password_box_1">パスワード(半角英数字・記号・8~20文字)</string>
-    <string name="register_password_box_2">パスワード確認</string>
+    <string name="register_mail_address_box">メールアドレス</string>
+    <string name="register_password_rules_title">パスワードルール</string>
+    <string name="register_password_rules">
+        ・8文字以上の半角英数字または記号\n
+        ・大文字、小文字の英字をそれぞれ1文字以上\n
+        ・数字を1文字以上
+    </string>
+    <string name="register_password_box">パスワード</string>
     <string name="register_return_button">戻る</string>
     <string name="register_register_button">登録</string>
     <string name="register_already_register_text">会員登録済みの方は</string>
@@ -109,13 +126,14 @@
 
     <!-- ログイン画面   -->
     <string name="login_app_title">明日何着る?</string>
-    <string name="login_mail">　メールアドレス</string>
-    <string name="login_password">　パスワード (半角英数字・記号・8~20文字)</string>
+    <string name="login_title">ログイン</string>
+    <string name="login_mail">メールアドレス</string>
+    <string name="login_password">パスワード</string>
     <string name="login_button">ログイン</string>
     <string name="login_password_forget">パスワードを忘れてしまった方は、</string>
-    <string name="login_forget_button">こちら</string>
+    <string name="login_forget_text">こちら</string>
     <string name="login_register">アカウントをお持ちでない場合、</string>
-    <string name="login_register_button">登録はこちら</string>
+    <string name="login_register_text">登録はこちら</string>
 
     <!-- クローゼット画面   -->
     <string name="closet_title">クローゼット</string>
@@ -162,7 +180,7 @@
     <string name="user_mail_address_key">USER_EMAIL_ADDRESS</string>
 
     <!-- パスワード再設定画面   -->
-    <string name="passcode_box">パスコード(数字6文字)</string>
+    <string name="passcode_box">パスコード(数字6桁)</string>
     <string name="new_password">8~20文字以内(半角英数字・記号)</string>
     <string name="new_password_description_1">新しいパスワードを入力してください</string>
     <string name="new_password_description_2">確認のため再度新しいパスワードを入力してください</string>

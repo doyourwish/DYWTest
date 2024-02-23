@@ -13,8 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoLogin;
 import com.example.bottomnav.common.UserMailAddress;
+import com.example.bottomnav.editText.ConfirmInput;
+import com.example.bottomnav.editText.FormMailAddress;
+import com.example.bottomnav.editText.RuleMailAddress;
+import com.example.bottomnav.editText.WhenChanged;
 import com.example.bottomnav.popup.ButtonInfo;
 import com.example.bottomnav.popup.Popup;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class SendMailForResetMailAddressActivity extends AppCompatActivity {
     @Override
@@ -46,15 +52,29 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
             loginEmailTextView.setText(oldMailAddress);
         }
 
+        //メールアドレス確認
+        TextInputEditText mailAddressEditText = findViewById(R.id.new_email_edit);
+        TextInputLayout mailAddressLayout = findViewById(R.id.layout_new_email_edit);
+
+        FormMailAddress formMailAddress = new FormMailAddress(this);
+        formMailAddress.createInputForm(mailAddressEditText, mailAddressLayout);
+
         //送信ボタン
         Button send_button = findViewById(R.id.send_button);
         send_button.setOnClickListener(v -> {
+            //メールアドレス入力確認
+            if(formMailAddress.getErrorMessage(mailAddressEditText) != null){
+                Popup popup = new Popup(this,new ButtonInfo());
+                popup.createPopup(getString(R.string.mail_address_re_input_title), formMailAddress.getErrorMessage(mailAddressEditText));
+                return;
+            }
+
             //メールアドレス再設定画面に遷移
             //他のcognitoの処理に合わせて、遷移先の画面でメール送信
             if(oldMailAddress == null){
                 ButtonInfo buttonInfo = new ButtonInfo();
                 Popup popup = new Popup(SendMailForResetMailAddressActivity.this, buttonInfo);
-                popup.createPopup("Error","再ログインをしてください");
+                popup.createPopup(getString(R.string.re_login_title),getString(R.string.re_login_message));
             }
             else {
                 EditText newMailAddressText = findViewById(R.id.new_email_edit);

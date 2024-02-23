@@ -11,10 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoResetMailAddress;
+import com.example.bottomnav.editText.FormPasscode;
 import com.example.bottomnav.popup.ActivityFinish;
 import com.example.bottomnav.popup.ButtonInfo;
 import com.example.bottomnav.popup.KindsButton;
 import com.example.bottomnav.popup.Popup;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -38,11 +41,24 @@ public class ResetMailAddressActivity extends AppCompatActivity {
         CognitoResetMailAddress cognitoResetMailAddress = new CognitoResetMailAddress(ResetMailAddressActivity.this);
         cognitoResetMailAddress.sendSetMailAddressCode(newMailAddress);
 
+        //パスコード確認
+        TextInputEditText passcodeEditText = findViewById(R.id.passcode_box);
+        TextInputLayout passcodeLayout = findViewById(R.id.layout_passcode_box);
+
+        FormPasscode formPasscode = new FormPasscode(this);
+        formPasscode.createInputForm(passcodeEditText, passcodeLayout);
+
         //変更押下
-        EditText text_passcode = findViewById(R.id.passcode_box);
         Button change_button = findViewById(R.id.change_button);
         change_button.setOnClickListener(v -> {
-            String passcode = text_passcode.getText().toString();
+            //パスコード入力確認
+            if(formPasscode.getErrorMessage(passcodeEditText) != null){
+                Popup popup = new Popup(this,new ButtonInfo());
+                popup.createPopup(getString(R.string.passcode_re_input_title), formPasscode.getErrorMessage(passcodeEditText));
+                return;
+            }
+
+            String passcode = passcodeEditText.getText().toString();
 
             //メールアドレス再設定
             //メールアドレス再設定画面も閉じられる
