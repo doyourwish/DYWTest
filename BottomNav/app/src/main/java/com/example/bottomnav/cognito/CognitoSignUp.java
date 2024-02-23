@@ -9,10 +9,10 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHan
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 import com.example.bottomnav.popup.ActivityChange;
-import com.example.bottomnav.popup.ActivityFinish;
 import com.example.bottomnav.popup.ButtonInfo;
 import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.start.GenderAgeActivity;
+import com.example.bottomnav.start.RegisterActivity;
 
 public class CognitoSignUp extends CognitoManager {
     public CognitoSignUp(Activity activity){
@@ -24,7 +24,6 @@ public class CognitoSignUp extends CognitoManager {
         // UserAttributeの設定（必要に応じて追加）
         CognitoUserAttributes userAttributes = new CognitoUserAttributes();
         userAttributes.addAttribute("email", username);
-        userAttributes.addAttribute("preferred_username", username); // ユーザー名をメールアドレスに合わせる
 
         // SignUp処理
         cognitoUserPool.signUpInBackground(username, password, userAttributes, null, new SignUpHandler() {
@@ -46,7 +45,7 @@ public class CognitoSignUp extends CognitoManager {
                 // エラーメッセージの表示や適切な処理を行うことができます。
                 // SignUp 失敗時のポップアップ表示
                 ButtonInfo buttonInfo = new ButtonInfo();
-                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                buttonInfo.popupFunctions.add(new ActivityChange(activity, RegisterActivity.class));
                 Popup popup = new Popup(activity, buttonInfo);
                 popup.createPopup("Error", "Send Code failed: " + exception.getMessage());
             }
