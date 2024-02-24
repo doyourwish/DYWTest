@@ -11,6 +11,9 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Auth
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
+import com.amazonaws.services.cognitoidentityprovider.model.InvalidPasswordException;
+import com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException;
+import com.example.bottomnav.R;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.home.MainActivity;
 import com.example.bottomnav.popup.ActivityChange;
@@ -45,10 +48,10 @@ public class CognitoLogin extends CognitoManager{
                 String refreshToken = userSession.getRefreshToken().getToken();
 
                 // ログイン後の処理をここに記述
-                Log.d("login", "ログイン成功");
-                Log.d("login", "アクセストークン: " + accessToken);
-                Log.d("login", "IDトークン: " + idToken);
-                Log.d("login", "リフレッシュトークン: " + refreshToken);
+                Log.d("[CognitoLogin]login", "[onSuccess]login success");
+                Log.d("[CognitoLogin]login", "[onSuccess]accessToken: " + accessToken);
+                Log.d("[CognitoLogin]login", "[onSuccess]idToken: " + idToken);
+                Log.d("[CognitoLogin]login", "[onSuccess]refreshToken: " + refreshToken);
 
                 // ログイン成功時のポップアップ表示
                 // 初期登録完了前後で画面遷移を分岐
@@ -58,13 +61,13 @@ public class CognitoLogin extends CognitoManager{
                     ButtonInfo buttonInfo = new ButtonInfo();
                     buttonInfo.popupFunctions.add(new ActivityChange(activity, MainActivity.class));
                     Popup popup = new Popup(activity, buttonInfo);
-                    popup.createPopup("Success", "Login was successful.");
+                    popup.createPopup(activity.getString(R.string.login_title), activity.getString(R.string.login_success_message));
                 }
                 else{
                     ButtonInfo buttonInfo = new ButtonInfo();
                     buttonInfo.popupFunctions.add(new ActivityChange(activity, GenderAgeActivity.class));
                     Popup popup = new Popup(activity, buttonInfo);
-                    popup.createPopup("Success", "Login was successful.");
+                    popup.createPopup(activity.getString(R.string.login_title), activity.getString(R.string.login_success_message));
                 }
             }
 
@@ -91,13 +94,19 @@ public class CognitoLogin extends CognitoManager{
 
             @Override
             public void onFailure(Exception exception) {
-                // TODO:エラー種別によるポップアップ表示の変更
                 // ログイン失敗時の処理
-                Log.e("login", "ログイン失敗: " + exception.getMessage());
+                Log.e("[CognitoLogin]login", "[onFailure]kinds of error: " + exception.getClass().getSimpleName());
+                Log.e("[CognitoLogin]login", "[onFailure]error message: " + exception.getMessage());
                 // ログイン失敗時のポップアップ表示
                 ButtonInfo buttonInfo = new ButtonInfo();
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Error", "Login was failed: " + exception.getMessage());
+                if (exception instanceof NotAuthorizedException) {
+                    popup.createPopup(activity.getString(R.string.re_login_title), activity.getString(R.string.login_info_not_register));
+                } else if (exception instanceof InvalidPasswordException) {
+                    popup.createPopup(activity.getString(R.string.re_login_title), activity.getString(R.string.cognito_password_illegal));
+                } else{
+                    popup.createPopup(activity.getString(R.string.re_login_title), activity.getString(R.string.cognito_internal_error));
+                }
             }
         });
 
@@ -140,12 +149,14 @@ public class CognitoLogin extends CognitoManager{
 
             @Override
             public void onFailure(Exception exception) {
+                Log.e("[CognitoLogin]checkLogin", "[onFailure]kinds of error: " + exception.getClass().getSimpleName());
+                Log.e("[CognitoLogin]checkLogin", "[onFailure]error message: " + exception.getMessage());
                 //ログイン画面に遷移
                 ButtonInfo buttonInfo = new ButtonInfo();
                 buttonInfo.popupFunctions.add(new AppSignOut(activity));
                 buttonInfo.popupFunctions.add(new ActivityChange(activity, LoginActivity.class, true));
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("再ログイン","メールアドレス再設定の前に再ログインをしてください");
+                popup.createPopup(activity.getString(R.string.re_login_title),activity.getString(R.string.re_login_message));
             }
         });
 

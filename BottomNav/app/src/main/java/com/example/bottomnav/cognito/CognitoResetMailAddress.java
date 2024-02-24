@@ -7,6 +7,10 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttribu
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
+import com.amazonaws.services.cognitoidentityprovider.model.AliasExistsException;
+import com.amazonaws.services.cognitoidentityprovider.model.CodeMismatchException;
+import com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException;
+import com.example.bottomnav.R;
 import com.example.bottomnav.common.UserMailAddress;
 import com.example.bottomnav.popup.ActivityChange;
 import com.example.bottomnav.popup.ActivityFinish;
@@ -36,20 +40,30 @@ public class CognitoResetMailAddress extends CognitoManager{
         cognitoUser.updateAttributesInBackground(cognitoUserAttributes, new UpdateAttributesHandler() {
             @Override
             public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
+                Log.d("[CognitoResetMailAddress]sendSetMailAddressCode","[onSuccess] : " + newMailAddress);
                 // パスコード送信が成功した場合の処理
                 ButtonInfo buttonInfo = new ButtonInfo();
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Success", "Send Code was Success. Check your email box");
-                Log.d("sendSetMailAddressCode","send code : " + newMailAddress);
+                popup.createPopup(activity.getString(R.string.reset_mail_address_title), activity.getString(R.string.send_passcode_success));
             }
 
             @Override
             public void onFailure(Exception exception) {
+                Log.e("[CognitoResetMailAddress]sendSetMailAddressCode", "[onFailure]kinds of error: " + exception.getClass().getSimpleName());
+                Log.e("[CognitoResetMailAddress]sendSetMailAddressCode", "[onFailure]error message: " + exception.getMessage());
                 // 失敗時の処理
                 ButtonInfo buttonInfo = new ButtonInfo();
-                buttonInfo.popupFunctions.add(new ActivityFinish(activity));
-                Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Error", "Send for setting NewMailAddress was failed: " + exception.getMessage());
+                if (exception instanceof NotAuthorizedException) {
+                    //ログイン画面に遷移
+                    buttonInfo.popupFunctions.add(new AppSignOut(activity));
+                    buttonInfo.popupFunctions.add(new ActivityChange(activity, LoginActivity.class, true));
+                    Popup popup = new Popup(activity, buttonInfo);
+                    popup.createPopup(activity.getString(R.string.re_login_title),activity.getString(R.string.re_login_message));
+                } else {
+                    buttonInfo.popupFunctions.add(new ActivityFinish(activity));
+                    Popup popup = new Popup(activity, buttonInfo);
+                    popup.createPopup(activity.getString(R.string.reset_mail_address_title), activity.getString(R.string.cognito_internal_error));
+                }
             }
         });
 
@@ -72,15 +86,23 @@ public class CognitoResetMailAddress extends CognitoManager{
                 buttonInfo.popupFunctions.add(new AppSignOut(activity));
                 buttonInfo.popupFunctions.add(new ActivityChange(activity,LoginActivity.class,true));
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Success", "Set NewMailAddress was success");
+                popup.createPopup(activity.getString(R.string.reset_mail_address_title), activity.getString(R.string.reset_mail_address_success));
             }
 
             @Override
             public void onFailure(Exception exception) {
+                Log.e("[CognitoResetMailAddress]setNewMailAddress", "[onFailure]kinds of error: " + exception.getClass().getSimpleName());
+                Log.e("[CognitoResetMailAddress]setNewMailAddress", "[onFailure]error message: " + exception.getMessage());
                 // 失敗時の処理
                 ButtonInfo buttonInfo = new ButtonInfo();
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Error", "Set NewMailAddress was failed: " + exception.getMessage());
+                if (exception instanceof CodeMismatchException) {
+                    popup.createPopup(activity.getString(R.string.reset_mail_address_title), activity.getString(R.string.passcode_illegal));
+                } else if (exception instanceof AliasExistsException) {
+                    popup.createPopup(activity.getString(R.string.reset_mail_address_title), activity.getString(R.string.already_register_mail_address));
+                } else{
+                    popup.createPopup(activity.getString(R.string.reset_mail_address_title), activity.getString(R.string.cognito_internal_error));
+                }
             }
         });
 

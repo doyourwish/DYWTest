@@ -9,7 +9,7 @@
     <string name="password_re_input_title">パスワード再入力</string>
     <string name="passcode_re_input_title">パスコード再入力</string>
     <string name="re_login_title">再ログイン</string>
-    <string name="re_login_message">再ログインをしてください</string>
+    <string name="re_login_message">手続きを進めるために、再ログインをしてください</string>
 
     <!-- 入力確認 -->
     <string name="length_over">文字以上入力してください</string>
@@ -20,6 +20,21 @@
     <string name="literal_only_number">数字のみ入力してください</string>
     <string name="literal_not_full_width">全角文字は使用できません</string>
     <string name="literal_mail_address">有効なメールアドレスを入力してください</string>
+
+    <!-- Cognito -->
+    <string name="cognito_password_illegal">パスワードの形式が異なります</string>
+    <string name="cognito_internal_error">時間を置いて再度お試しください</string>
+    <string name="login_success_message">ログインが成功しました</string>
+    <string name="login_info_not_register">ログイン情報が異なります\n入力を確認してください</string>
+    <string name="delete_user_complete">退会が完了しました</string>
+    <string name="send_passcode_success">パスコードを送信しました\nメールを確認してください</string>
+    <string name="passcode_illegal">パスコードが異なります</string>
+    <string name="reset_mail_address_success">メールアドレス再設定に成功しました</string>
+    <string name="reset_password_success">パスワード再設定に成功しました</string>
+    <string name="register_complete">新規登録が完了しました</string>
+    <string name="register_confirm_cancel_title">キャンセル確認</string>
+    <string name="register_confirm_cancel_message">会員登録を中止しますか？</string>
+    <string name="already_register_mail_address">既に登録されてるメールアドレスです</string>
 
     <!-- 新規登録画面   -->
     <string name="register_title">新規会員登録</string>
@@ -187,6 +202,7 @@
     <string name="change_button">変更</string>
     <string name="cancel_button">キャンセル</string>
     <string name="reset_password_after_mail_send_description">メールを送信しました。\n届いたメールに記載されたパスコードを本アプリに入力し、パスワードを再設定してください。</string>
+    <string name="reset_password_cancel_message">パスワードの再設定を中断しますか？</string>
 
     <!-- メールアドレス再設定メール送信画面   -->
     <string name="reset_mail_address_title">メールアドレスの再設定</string>
@@ -199,6 +215,7 @@
     <!-- メールアドレス再設定画面   -->
     <string name="new_mail_address_description">新しいメールアドレス</string>
     <string name="reset_mail_address_after_mail_send_description">メールを送信しました。\n届いたメールに記載されたパスコードを本アプリに入力し、メールアドレスを再設定してください。</string>
+    <string name="reset_mail_address_cancel_message">メールアドレスの再設定を中断しますか？</string>
 
     <!-- カレンダー画面   -->
     <string name="tv_winfo_title">お天気詳細</string>

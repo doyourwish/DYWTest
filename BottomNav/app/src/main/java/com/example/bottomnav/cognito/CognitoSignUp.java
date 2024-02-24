@@ -1,13 +1,17 @@
 package com.example.bottomnav.cognito;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
+import com.amazonaws.services.cognitoidentityprovider.model.CodeMismatchException;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
+import com.amazonaws.services.cognitoidentityprovider.model.UsernameExistsException;
+import com.example.bottomnav.R;
 import com.example.bottomnav.popup.ActivityChange;
 import com.example.bottomnav.popup.ButtonInfo;
 import com.example.bottomnav.popup.Popup;
@@ -36,18 +40,25 @@ public class CognitoSignUp extends CognitoManager {
                 // SignUp 成功時のポップアップ表示
                 ButtonInfo buttonInfo = new ButtonInfo();
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Success", "Send Code was Success. Check your email box");
+                popup.createPopup(activity.getString(R.string.register_title), activity.getString(R.string.send_passcode_success));
             }
 
             @Override
             public void onFailure(Exception exception) {
+                Log.e("[CognitoSignUp]signUpUser", "[onFailure]kinds of error: " + exception.getClass().getSimpleName());
+                Log.e("[CognitoSignUp]signUpUser", "[onFailure]error message: " + exception.getMessage());
                 // SignUp 失敗時の処理
                 // エラーメッセージの表示や適切な処理を行うことができます。
                 // SignUp 失敗時のポップアップ表示
                 ButtonInfo buttonInfo = new ButtonInfo();
                 buttonInfo.popupFunctions.add(new ActivityChange(activity, RegisterActivity.class));
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Error", "Send Code failed: " + exception.getMessage());
+                if (exception instanceof UsernameExistsException) {
+                    popup.createPopup(activity.getString(R.string.register_title), activity.getString(R.string.already_register_mail_address));
+                }
+                else{
+                    popup.createPopup(activity.getString(R.string.register_title), activity.getString(R.string.cognito_internal_error));
+                }
             }
         });
 
@@ -62,14 +73,21 @@ public class CognitoSignUp extends CognitoManager {
                 ButtonInfo buttonInfo = new ButtonInfo();
                 buttonInfo.popupFunctions.add(new ActivityChange(activity, GenderAgeActivity.class));
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Success", "Account confirmed. You can now sign in.");
+                popup.createPopup(activity.getString(R.string.register_title), activity.getString(R.string.register_complete));
             }
 
             @Override
             public void onFailure(Exception exception) {
+                Log.e("[CognitoSignUp]confirmSignUp", "[onFailure]kinds of error: " + exception.getClass().getSimpleName());
+                Log.e("[CognitoSignUp]confirmSignUp", "[onFailure]error message: " + exception.getMessage());
                 ButtonInfo buttonInfo = new ButtonInfo();
                 Popup popup = new Popup(activity, buttonInfo);
-                popup.createPopup("Error", "Confirmation failed: " + exception.getMessage());
+                if (exception instanceof CodeMismatchException) {
+                    popup.createPopup(activity.getString(R.string.register_title), activity.getString(R.string.passcode_illegal));
+                }
+                else{
+                    popup.createPopup(activity.getString(R.string.register_title), activity.getString(R.string.cognito_internal_error));
+                }
             }
         });
 
