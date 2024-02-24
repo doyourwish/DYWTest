@@ -16,6 +16,6 @@ public class LengthEqual extends RuleLength {
         if(text.toString().length() == limitLength){
             return null;
         }
-        return String.valueOf(limitLength) + activity.getString(R.string.length_over);
+        return String.valueOf(limitLength) + activity.getString(R.string.length_equal);
     }
 }

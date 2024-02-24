@@ -52,10 +52,12 @@ public class SendMailForResetPasswordActivity extends AppCompatActivity {
         Button send_button = findViewById(R.id.send_button);
         send_button.setOnClickListener(v -> {
             //メールアドレス入力確認
-            if(formMailAddress.getErrorMessage(mailAddressEditText) != null){
-                Popup popup = new Popup(this,new ButtonInfo());
-                popup.createPopup(getString(R.string.mail_address_re_input_title), formMailAddress.getErrorMessage(mailAddressEditText));
-                return;
+            if(mailAddress == null) {
+                if (formMailAddress.getErrorMessage(mailAddressEditText) != null) {
+                    Popup popup = new Popup(this, new ButtonInfo());
+                    popup.createPopup(getString(R.string.mail_address_re_input_title), formMailAddress.getErrorMessage(mailAddressEditText));
+                    return;
+                }
             }
 
             //パスワード再設定画面に遷移

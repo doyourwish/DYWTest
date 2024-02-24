@@ -89,7 +89,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             multiButtonInfo.add(positiveButtonInfo);
             multiButtonInfo.add(negativeButtonInfo);
             Popup popup = new Popup(ResetPasswordActivity.this, multiButtonInfo);
-            popup.createPopup("キャンセル確認","パスワードの再設定をやめますか？");
+            popup.createPopup(getString(R.string.reset_password_title),getString(R.string.reset_password_cancel_message));
         });
 
         //こちら押下

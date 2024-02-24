@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/grey">
 
@@ -37,19 +38,27 @@
         android:text="@string/confirm_register_passcode"
         android:textSize="15dp"/>
 
-    <EditText
-        android:id="@+id/passcode_box"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_passcode_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="20dp"
-        android:hint="@string/passcode_box"
-        android:inputType="number"
-        android:maxLength="6"
-        android:background="@color/white"/>
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passcode_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="@string/passcode_box"
+            android:inputType="number"
+            android:maxLength="6"
+            android:background="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

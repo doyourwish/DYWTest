@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,7 +77,7 @@ public class ResetMailAddressActivity extends AppCompatActivity {
             multiButtonInfo.add(positiveButtonInfo);
             multiButtonInfo.add(negativeButtonInfo);
             Popup popup = new Popup(ResetMailAddressActivity.this, multiButtonInfo);
-            popup.createPopup("キャンセル確認","メールアドレスの再設定をやめますか？");
+            popup.createPopup(getString(R.string.reset_mail_address_title),getString(R.string.reset_mail_address_cancel_message));
         });
 
         //こちら押下

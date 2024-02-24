@@ -36,11 +36,6 @@ public class SendMailForResetMailAddressActivity extends AppCompatActivity {
         UserMailAddress userMailAddress = new UserMailAddress(SendMailForResetMailAddressActivity.this);
         String oldMailAddress = userMailAddress.getUserMailAddress();
 
-        //ログイン確認
-        //cognitoのセッションが切れた場合は、ログイン画面に遷移
-        CognitoLogin cognitoLogin = new CognitoLogin(SendMailForResetMailAddressActivity.this);
-        cognitoLogin.checkLogin(oldMailAddress);
-
         //メールアドレス表示
         TextView loginEmailTextView = findViewById(R.id.login_email_text);
         if(oldMailAddress == null){
