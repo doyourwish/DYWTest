@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.example.bottomnav.R;
 
-public class LiteralTypeUpperEnglish extends RuleLength {
+public class LiteralTypeUpperEnglish extends RuleLiteralType {
     public LiteralTypeUpperEnglish(Activity activity){
         super(activity);
     }

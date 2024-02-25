@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.example.bottomnav.R;
 
-public class LiteralTypeNotFullWidth extends RuleLength {
+public class LiteralTypeNotFullWidth extends RuleLiteralType {
     public LiteralTypeNotFullWidth(Activity activity){
         super(activity);
     }
