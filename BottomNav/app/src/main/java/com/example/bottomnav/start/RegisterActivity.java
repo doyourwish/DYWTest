@@ -2,6 +2,9 @@ package com.example.bottomnav.start;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,8 +13,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
+import com.example.bottomnav.editText.ConfirmInput;
+import com.example.bottomnav.editText.FormMailAddress;
+import com.example.bottomnav.editText.FormPassword;
+import com.example.bottomnav.editText.LengthOver;
+import com.example.bottomnav.editText.LiteralTypeLowerEnglish;
+import com.example.bottomnav.editText.LiteralTypeNotFullWidth;
+import com.example.bottomnav.editText.LiteralTypeNumber;
+import com.example.bottomnav.editText.LiteralTypeUpperEnglish;
+import com.example.bottomnav.editText.RuleMailAddress;
+import com.example.bottomnav.editText.WhenChanged;
 import com.example.bottomnav.popup.ButtonInfo;
 import com.example.bottomnav.popup.Popup;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -20,34 +35,39 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //登録ボタン
-        EditText text_mail_address_1 = findViewById(R.id.register_mail_address_box_1);
-        EditText text_mail_address_2 = findViewById(R.id.register_mail_address_box_2);
-        EditText text_password_1 = findViewById(R.id.register_password_box_1);
-        EditText text_password_2 = findViewById(R.id.register_password_box_2);
+        //メールアドレス確認
+        TextInputEditText mailAddressEditText = findViewById(R.id.register_mail_address_box);
+        TextInputLayout mailAddressLayout = findViewById(R.id.layout_register_mail_address_box);
 
+        FormMailAddress formMailAddress = new FormMailAddress(this);
+        formMailAddress.createInputForm(mailAddressEditText, mailAddressLayout);
+
+        //パスワード確認
+        TextInputEditText passwordEditText = findViewById(R.id.register_password_box);
+        TextInputLayout passwordLayout = findViewById(R.id.layout_register_password_box);
+
+        FormPassword formPassword = new FormPassword(this);
+        formPassword.createInputForm(passwordEditText, passwordLayout);
+
+        //登録ボタン
         Button register_button = findViewById(R.id.register_register_button);
         register_button.setOnClickListener(v -> {
-            String mail_address_1 = text_mail_address_1.getText().toString();
-            String mail_address_2 = text_mail_address_2.getText().toString();
-            String password_1 = text_password_1.getText().toString();
-            String password_2 = text_password_2.getText().toString();
-
-            //メールアドレス確認
-            if(!mail_address_1.equals(mail_address_2)){
-                ButtonInfo buttonInfo = new ButtonInfo();
-                Popup popup = new Popup(RegisterActivity.this, buttonInfo);
-                popup.createPopup("新規会員登録", "「メールアドレス」と「確認用メールアドレス」が一致しません");
+            //メールアドレス入力確認
+            if(formMailAddress.getErrorMessage(mailAddressEditText) != null){
+                Popup popup = new Popup(this,new ButtonInfo());
+                popup.createPopup(getString(R.string.mail_address_re_input_title), formMailAddress.getErrorMessage(mailAddressEditText));
                 return;
             }
 
-            //パスワード確認
-            if(!password_1.equals(password_2)){
-                ButtonInfo buttonInfo = new ButtonInfo();
-                Popup popup = new Popup(RegisterActivity.this, buttonInfo);
-                popup.createPopup("新規会員登録", "「パスワード」と「確認用パスワード」が一致しません");
+            //パスワード入力確認
+            if(formPassword.getErrorMessage(passwordEditText) != null){
+                Popup popup = new Popup(this,new ButtonInfo());
+                popup.createPopup(getString(R.string.password_re_input_title), formPassword.getErrorMessage(passwordEditText));
                 return;
             }
+
+            String email = mailAddressEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
 
             //会員登録
             //実際に処理を行うのは、ConfirmRegisterActivity
@@ -58,8 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
             //ネットワーク操作があるクラスは別のActivityにインスタンスを渡すためのSerializeができないため、
             //遷移先の画面でメール送信を行う
             Intent intent = new Intent(getApplication(), ConfirmRegisterActivity.class);
-            intent.putExtra(getString(R.string.register_user_mail_address_key),mail_address_1);
-            intent.putExtra(getString(R.string.register_user_password_key),password_1);
+            intent.putExtra(getString(R.string.register_user_mail_address_key),email);
+            intent.putExtra(getString(R.string.register_user_password_key),password);
             startActivity(intent);
             //新規登録画面を閉じる
             finish();

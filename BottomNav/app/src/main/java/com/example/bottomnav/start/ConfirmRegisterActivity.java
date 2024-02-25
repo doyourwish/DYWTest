@@ -11,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bottomnav.R;
 import com.example.bottomnav.cognito.CognitoSignUp;
+import com.example.bottomnav.editText.FormPasscode;
 import com.example.bottomnav.popup.ActivityFinish;
 import com.example.bottomnav.popup.ButtonInfo;
 import com.example.bottomnav.popup.KindsButton;
 import com.example.bottomnav.popup.Popup;
 import com.example.bottomnav.setting.account.UserAccountQAActivity;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -35,11 +38,24 @@ public class ConfirmRegisterActivity extends AppCompatActivity {
         CognitoSignUp cognitoSignUp = new CognitoSignUp(ConfirmRegisterActivity.this);
         cognitoSignUp.signUpUser(mailAddress,password);
 
+        //パスコード確認
+        TextInputEditText passcodeEditText = findViewById(R.id.passcode_box);
+        TextInputLayout passcodeLayout = findViewById(R.id.layout_passcode_box);
+
+        FormPasscode formPasscode = new FormPasscode(this);
+        formPasscode.createInputForm(passcodeEditText, passcodeLayout);
+
         //登録押下
-        EditText text_passcode = findViewById(R.id.passcode_box);
         Button register_button = findViewById(R.id.register_register_button);
         register_button.setOnClickListener(v -> {
-            String passcode = text_passcode.getText().toString();
+            //パスコード入力確認
+            if(formPasscode.getErrorMessage(passcodeEditText) != null){
+                Popup popup = new Popup(this,new ButtonInfo());
+                popup.createPopup(getString(R.string.passcode_re_input_title), formPasscode.getErrorMessage(passcodeEditText));
+                return;
+            }
+
+            String passcode = passcodeEditText.getText().toString();
 
             //新規登録確認
             //成功の場合、新規登録確認画面を閉じる
@@ -59,7 +75,7 @@ public class ConfirmRegisterActivity extends AppCompatActivity {
             multiButtonInfo.add(positiveButtonInfo);
             multiButtonInfo.add(negativeButtonInfo);
             Popup popup = new Popup(ConfirmRegisterActivity.this, multiButtonInfo);
-            popup.createPopup("キャンセル確認","会員登録を中止しますか？");
+            popup.createPopup(getString(R.string.register_confirm_cancel_title),getString(R.string.register_confirm_cancel_message));
         });
 
         //こちら押下
